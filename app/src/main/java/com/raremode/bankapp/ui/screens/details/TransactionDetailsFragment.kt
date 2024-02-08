@@ -42,8 +42,12 @@ import com.raremode.bankapp.utils.AppFont
 import com.raremode.bankapp.utils.Constants
 
 @Composable
-@Preview(showBackground = true)
-fun TransactionDetailsScreen() {
+fun TransactionDetailsScreen(service: String,
+                             type: String,
+                             sum: Double,
+                             subtitle: String,
+                             trDate: String) {
+    val model = TransactionHistoryModel(service, type, sum, subtitle, trDate)
     BankAppTheme(darkTheme = true) {
         Column(
             modifier = Modifier
@@ -60,10 +64,7 @@ fun TransactionDetailsScreen() {
                     .clip(shape = RoundedCornerShape(4.dp)),
                 color = Color.White
             )
-            transactionDetailsItem(
-                TransactionsHistory().getTransactionsHistory()[1]
-                        as TransactionHistoryModel
-            )
+            transactionDetailsItem(model)
         }
     }
 }

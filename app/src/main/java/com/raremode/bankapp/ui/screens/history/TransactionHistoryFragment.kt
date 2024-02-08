@@ -4,15 +4,14 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
 import com.raremode.bankapp.repository.TransactionsHistory
 import com.raremode.bankapp.ui.screens.history.items.TransactionHistoryList
 import com.raremode.bankapp.ui.screens.toolbar.Toolbar
 import com.raremode.bankapp.ui.theme.BankAppTheme
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Preview(showBackground = true)
 @Composable
-fun TransactionHistoryFragment() {
+fun TransactionHistoryFragment(navController: NavHostController) {
     val serviceList = TransactionsHistory().getTransactionsHistory()
     var queryString = ""
 
@@ -33,7 +32,7 @@ fun TransactionHistoryFragment() {
 //                onActiveChange = {}) {
 //
 //            }
-            TransactionHistoryList(serviceList = serviceList)
+            TransactionHistoryList(serviceList = serviceList, navController)
         }
     }
 }

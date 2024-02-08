@@ -24,12 +24,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.net.toUri
+import androidx.navigation.NavHostController
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.raremode.bankapp.models.TransactionHistoryModel
-import com.raremode.bankapp.ui.screens.details.TransactionDetailsScreen
 import com.raremode.bankapp.utils.AppFont
 import com.raremode.bankapp.utils.Constants
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 import java.util.Currency
 import java.util.Locale
 
@@ -38,6 +40,7 @@ import java.util.Locale
 fun TransactionHistoryItem(
     serviceModel: TransactionHistoryModel,
     color: Color = Color.Gray,
+    navController: NavHostController
 ) {
     Row(
         modifier = Modifier
@@ -45,7 +48,14 @@ fun TransactionHistoryItem(
             .padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 8.dp)
             .height(60.dp)
             .clickable {
-
+                navController.navigate(
+                    route = "details_screen"
+                            + "/${URLEncoder.encode(serviceModel.service, StandardCharsets.UTF_8.toString())}"
+                            + "/${serviceModel.type}"
+                            + "/${serviceModel.sum}"
+                            + "/${serviceModel.sumSubtitle}"
+                            + "/${serviceModel.transactionDate}"
+                )
             }
     ) {
         Box(

@@ -72,6 +72,9 @@ dependencies {
 
     implementation("io.coil-kt:coil-compose:2.5.0")
 
+    // navigation
+    implementation ("androidx.navigation:navigation-compose:2.7.2")
+
 
 
     val composeBom = platform("androidx.compose:compose-bom:2024.01.00")

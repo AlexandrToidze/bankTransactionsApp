@@ -11,11 +11,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.raremode.bankapp.models.TransactionHistoryDateModel
 import com.raremode.bankapp.models.TransactionHistoryModel
 
 @Composable
-fun TransactionHistoryList(serviceList: List<Any>) {
+fun TransactionHistoryList(
+    serviceList: List<Any>,
+    navController: NavHostController) {
     LazyColumn(
         verticalArrangement = Arrangement.Top,
         modifier = Modifier
@@ -31,7 +34,8 @@ fun TransactionHistoryList(serviceList: List<Any>) {
                     is TransactionHistoryModel -> {
                         TransactionHistoryItem(
                             serviceModel = serviceList[position]
-                                    as TransactionHistoryModel
+                                    as TransactionHistoryModel,
+                            navController = navController
                         )
                     }
 
