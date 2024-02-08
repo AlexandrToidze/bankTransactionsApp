@@ -1,6 +1,5 @@
 package com.raremode.bankapp.ui.screens.details
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -14,18 +13,16 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Divider
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
@@ -34,37 +31,41 @@ import com.raremode.bankapp.extensions.isPositiveSum
 import com.raremode.bankapp.extensions.retrieveServiceName
 import com.raremode.bankapp.extensions.toCurrencyString
 import com.raremode.bankapp.models.TransactionHistoryModel
-import com.raremode.bankapp.repository.TransactionsHistory
 import com.raremode.bankapp.ui.screens.details.items.paymentInfo
 import com.raremode.bankapp.ui.screens.details.items.paymentOption
 import com.raremode.bankapp.ui.theme.BankAppTheme
 import com.raremode.bankapp.utils.AppFont
 import com.raremode.bankapp.utils.Constants
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TransactionDetailsScreen(service: String,
                              type: String,
                              sum: Double,
                              subtitle: String,
-                             trDate: String) {
+                             trDate: String,
+                             onDismiss: () -> Unit
+) {
     val model = TransactionHistoryModel(service, type, sum, subtitle, trDate)
     BankAppTheme(darkTheme = true) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight()
-                .background(Color.Black),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Divider(
-                Modifier
-                    .width(40.dp)
-                    .height(12.dp)
-                    .padding(top = 8.dp)
-                    .clip(shape = RoundedCornerShape(4.dp)),
-                color = Color.White
-            )
-            transactionDetailsItem(model)
+        ModalBottomSheet(onDismissRequest = { onDismiss }) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight()
+                    .background(Color.Black),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Divider(
+                    Modifier
+                        .width(40.dp)
+                        .height(12.dp)
+                        .padding(top = 8.dp)
+                        .clip(shape = RoundedCornerShape(4.dp)),
+                    color = Color.White
+                )
+                transactionDetailsItem(model)
+            }
         }
     }
 }
@@ -86,7 +87,9 @@ fun transactionDetailsItem(transactionInfoModel: TransactionHistoryModel) {
 
             AsyncImage(
                 model = "${Constants.GLIDE_ICONS_LOAD_URL}${transactionInfoModel.service}",
-                contentDescription = "use Coil for load image for transaction details"
+                contentDescription = "use Coil for load image for transaction details",
+                contentScale = ContentScale.Crop,
+                alignment = Alignment.Center
             )
         }
 

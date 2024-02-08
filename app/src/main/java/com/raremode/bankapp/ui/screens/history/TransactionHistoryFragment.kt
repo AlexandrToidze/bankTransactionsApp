@@ -17,6 +17,7 @@ fun TransactionHistoryFragment(navController: NavHostController) {
 
     BankAppTheme {
 
+
         Column {
             Toolbar()
 

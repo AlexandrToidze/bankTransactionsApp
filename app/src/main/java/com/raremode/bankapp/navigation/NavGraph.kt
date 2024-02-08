@@ -45,7 +45,10 @@ fun SetupNavGraph(navController: NavHostController) {
 
             // pass an empty string for now
             // we'll send the original data
-            TransactionDetailsScreen(service = service, type = type, sum = sum, subtitle = subtitle, trDate = trDate)
+            TransactionDetailsScreen(service = service, type = type, sum = sum, subtitle = subtitle, trDate = trDate,
+                onDismiss = {
+                    navController.navigate(route = "history_screen")
+                })
         }
     }
 }

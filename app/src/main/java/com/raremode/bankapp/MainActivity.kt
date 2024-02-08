@@ -30,6 +30,10 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
+    companion object {
+        const val NAV_CONTROLLER = "NAV_CONTROLLER"
+    }
 }
 
 @Composable
