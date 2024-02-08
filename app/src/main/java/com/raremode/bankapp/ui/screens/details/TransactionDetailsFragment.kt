@@ -23,6 +23,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -81,7 +82,8 @@ fun transactionDetailsItem(transactionInfoModel: TransactionHistoryModel) {
 
             AsyncImage(
                 model = "${Constants.GLIDE_ICONS_LOAD_URL}${transactionInfoModel.service}",
-                contentDescription = "use Coil for load image for transaction details"
+                contentDescription = "use Coil for load image for transaction details",
+                modifier = Modifier.fillMaxHeight().fillMaxWidth()
             )
         }
 

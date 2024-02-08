@@ -33,6 +33,26 @@ class TransactionsHistory() {
                 service = "http://facebook.com/",
                 sum = (-800.0)
             ),
+
+            TransactionHistoryModel(
+                service = "http://figma.com/",
+                sum = (201.0)
+            ),
+
+            TransactionHistoryModel(
+                service = "http://vk.com/",
+                sum = (379.0)
+            ),
+
+            TransactionHistoryModel(
+                service = "https://vk.com/",
+                sum = (520.0)
+            ),
+
+            TransactionHistoryModel(
+                service = "http://facebook.com/",
+                sum = (-800.0)
+            ),
         )
     }
 }

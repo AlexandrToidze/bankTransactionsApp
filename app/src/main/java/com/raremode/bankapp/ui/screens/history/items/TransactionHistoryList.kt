@@ -21,7 +21,7 @@ fun TransactionHistoryList(serviceList: List<Any>) {
         modifier = Modifier
             .fillMaxSize()
     ) {
-        items(6) { position ->
+        items(serviceList.size) { position ->
 
             println("Build item at position $position")
 

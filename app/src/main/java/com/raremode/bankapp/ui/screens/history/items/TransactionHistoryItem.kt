@@ -25,6 +25,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -59,7 +60,6 @@ fun TransactionHistoryItem(
         modifier = Modifier
             .fillMaxWidth()
             .padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 8.dp)
-            .height(60.dp)
             .clickable {
                 showBottomSheet = true
             }
@@ -79,11 +79,11 @@ fun TransactionHistoryItem(
 
         Box(
             modifier = Modifier
-                .aspectRatio(1.0f, matchHeightConstraintsFirst = true)
                 .clip(CircleShape)
-                .background(color)
-                .height(24.dp)
-                .width(24.dp)
+                .background(Color.Black)
+                .height(48.dp)
+                .width(48.dp)
+                .align(Alignment.CenterVertically)
         ) {
 
             GlideImage(
@@ -102,7 +102,9 @@ fun TransactionHistoryItem(
         Spacer(modifier = Modifier.width(6.dp))
 
         Column(
-            modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
+            modifier = Modifier
+                .padding(horizontal = 8.dp, vertical = 4.dp)
+                .align(Alignment.CenterVertically)
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
