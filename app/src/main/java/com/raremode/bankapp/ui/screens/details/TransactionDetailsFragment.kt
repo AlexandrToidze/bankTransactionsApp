@@ -42,28 +42,24 @@ import com.raremode.bankapp.utils.AppFont
 import com.raremode.bankapp.utils.Constants
 
 @Composable
-@Preview(showBackground = true)
-fun TransactionDetailsScreen() {
+fun TransactionDetailsScreen(transactionInfoModel: TransactionHistoryModel) {
     BankAppTheme(darkTheme = true) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .fillMaxHeight()
-                .background(Color.Black),
+                .fillMaxHeight(),
+//                .background(Color.Black),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Divider(
-                Modifier
-                    .width(40.dp)
-                    .height(12.dp)
-                    .padding(top = 8.dp)
-                    .clip(shape = RoundedCornerShape(4.dp)),
-                color = Color.White
-            )
-            transactionDetailsItem(
-                TransactionsHistory().getTransactionsHistory()[1]
-                        as TransactionHistoryModel
-            )
+//            Divider(
+//                Modifier
+//                    .width(40.dp)
+//                    .height(12.dp)
+//                    .padding(top = 8.dp)
+//                    .clip(shape = RoundedCornerShape(4.dp)),
+//                color = Color.White
+//            )
+            transactionDetailsItem(transactionInfoModel)
         }
     }
 }
