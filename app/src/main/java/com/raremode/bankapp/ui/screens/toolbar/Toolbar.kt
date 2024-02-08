@@ -26,7 +26,6 @@ import com.raremode.bankapp.utils.AppFont
 fun Toolbar() {
     Row(
         Modifier
-            .background(Color.Black)
             .fillMaxWidth()
             .height(64.dp)
             .padding(start = 16.dp, top = 12.dp, bottom = 12.dp, end = 16.dp),

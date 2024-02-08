@@ -20,7 +20,6 @@ fun TransactionHistoryList(serviceList: List<Any>) {
         verticalArrangement = Arrangement.Top,
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Black),
     ) {
         items(6) { position ->
 
