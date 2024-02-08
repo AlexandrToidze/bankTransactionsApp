@@ -1,4 +1,4 @@
-package com.raremode.bankapp.ui.theme.items
+package com.raremode.bankapp.ui.screens.toolbar
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

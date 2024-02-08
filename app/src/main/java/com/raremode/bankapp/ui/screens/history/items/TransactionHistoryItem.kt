@@ -1,4 +1,4 @@
-package com.raremode.bankapp.ui.theme.items
+package com.raremode.bankapp.ui.screens.history.items
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -27,6 +27,7 @@ import androidx.core.net.toUri
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.raremode.bankapp.models.TransactionHistoryModel
+import com.raremode.bankapp.ui.screens.details.TransactionDetailsScreen
 import com.raremode.bankapp.utils.AppFont
 import com.raremode.bankapp.utils.Constants
 import java.util.Currency

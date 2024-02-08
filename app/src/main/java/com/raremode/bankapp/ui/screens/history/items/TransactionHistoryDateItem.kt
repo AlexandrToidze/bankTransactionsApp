@@ -1,4 +1,4 @@
-package com.raremode.bankapp.ui.theme.items
+package com.raremode.bankapp.ui.screens.history.items
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
