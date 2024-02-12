@@ -67,6 +67,7 @@ fun TransactionHistoryItem(
 
         if (showBottomSheet) {
             ModalBottomSheet(
+                containerColor = Color.Black,
                 modifier = Modifier.fillMaxHeight(0.9f),
                 onDismissRequest = {
                     showBottomSheet = false

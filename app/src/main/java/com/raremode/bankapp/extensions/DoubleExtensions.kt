@@ -21,7 +21,7 @@ fun Double.toCurrencyString() : String {
             "+"
         }
         else {
-            "-"
+            ""
         } + "%.2f ${Currency.getInstance(Locale.getDefault()).symbol}",
         this
     )
