@@ -9,10 +9,13 @@ import com.raremode.bankapp.R
 
 object AppFont {
     val Girloy = FontFamily(
+        Font(R.font.girloy_thin, FontWeight.Thin),
         Font(R.font.girloy_light, FontWeight.Light),
-        Font(R.font.girloy_extrabold, FontWeight.ExtraBold),
-        Font(R.font.girloy_regular, FontWeight.Normal)
-    )
+        Font(R.font.girloy_regular, FontWeight.Normal),
+        Font(R.font.girloy_medium, FontWeight.Medium),
+        Font(R.font.girloy_semibold, FontWeight.SemiBold),
+        Font(R.font.girloy_extrabold, FontWeight.ExtraBold)
+        )
 }
 
 private val defaultTypography = Typography()

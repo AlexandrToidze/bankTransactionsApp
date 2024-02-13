@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -24,13 +25,16 @@ import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.raremode.bankapp.R
+import com.raremode.bankapp.extensions.dropSignsFromSum
 import com.raremode.bankapp.extensions.isPositiveSum
 import com.raremode.bankapp.extensions.retrieveServiceName
 import com.raremode.bankapp.extensions.toCurrencyString
@@ -41,6 +45,7 @@ import com.raremode.bankapp.ui.screens.details.items.paymentOption
 import com.raremode.bankapp.ui.theme.BankAppTheme
 import com.raremode.bankapp.utils.AppFont
 import com.raremode.bankapp.utils.Constants
+import kotlin.math.abs
 
 @Composable
 fun TransactionDetailsScreen(transactionInfoModel: TransactionHistoryModel) {
@@ -70,7 +75,7 @@ fun transactionDetailsItem(transactionInfoModel: TransactionHistoryModel) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
-            .padding(start = 16.dp, end = 16.dp, top = 36.dp)
+            .padding(start = 16.dp, end = 16.dp, top = 20.dp)
     ) {
         Box(
             modifier = Modifier
@@ -83,7 +88,9 @@ fun transactionDetailsItem(transactionInfoModel: TransactionHistoryModel) {
             AsyncImage(
                 model = "${Constants.GLIDE_ICONS_LOAD_URL}${transactionInfoModel.service}",
                 contentDescription = "use Coil for load image for transaction details",
-                modifier = Modifier.fillMaxHeight().fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .fillMaxWidth()
             )
         }
 
@@ -93,7 +100,7 @@ fun transactionDetailsItem(transactionInfoModel: TransactionHistoryModel) {
             color = Color.White,
             fontSize = 20.sp,
             fontFamily = AppFont.Girloy,
-            fontWeight = FontWeight.Normal,
+            fontWeight = FontWeight.SemiBold,
             modifier = Modifier.padding(top = 12.dp)
         )
 
@@ -101,10 +108,10 @@ fun transactionDetailsItem(transactionInfoModel: TransactionHistoryModel) {
             //transaction date
             text = transactionInfoModel.transactionDate,
             color = Color.Gray,
-            fontSize = 20.sp,
+            fontSize = 15.sp,
             fontFamily = AppFont.Girloy,
-            fontWeight = FontWeight.Normal,
-            modifier = Modifier.padding(top = 12.dp)
+            fontWeight = FontWeight.SemiBold,
+            modifier = Modifier.padding(top = 8.dp)
         )
 
         Text(
@@ -113,7 +120,7 @@ fun transactionDetailsItem(transactionInfoModel: TransactionHistoryModel) {
             color = transactionInfoModel.sum.isPositiveSum(),
             fontSize = 26.sp,
             fontFamily = AppFont.Girloy,
-            fontWeight = FontWeight.ExtraBold,
+            fontWeight = FontWeight.SemiBold,
             modifier = Modifier.padding(top = 16.dp)
         )
 
@@ -121,16 +128,17 @@ fun transactionDetailsItem(transactionInfoModel: TransactionHistoryModel) {
             paymentInfo(
                 from = sumSubtitle,
                 category = type,
-                cashback = (sum / 100).toCurrencyString()
+                cashback = abs(sum / 100).toCurrencyString().dropSignsFromSum()
             )
         }
 
         Row(
-            horizontalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier
                 .fillMaxWidth()
+                .padding(top = 16.dp)
         ) {
             paymentOption(text = "View receipt", image = R.drawable.ic_chart)
+            Spacer(modifier = Modifier.width(16.dp))
             paymentOption(text = "Split your payment", image = R.drawable.ic_filter)
         }
     }

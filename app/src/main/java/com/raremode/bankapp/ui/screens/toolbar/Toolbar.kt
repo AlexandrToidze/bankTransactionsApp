@@ -45,9 +45,9 @@ fun Toolbar() {
             text = "Transactions",
             color = Color.White,
             fontFamily = AppFont.Girloy,
-            fontWeight = FontWeight.Normal,
+            fontWeight = FontWeight.Medium,
             fontSize = 20.sp,
-            modifier = Modifier.padding(start = 16.dp)
+            modifier = Modifier.padding(start = 32.dp)
         )
 
         Row {

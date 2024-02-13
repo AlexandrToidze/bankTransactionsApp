@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -19,8 +20,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.raremode.bankapp.R
@@ -31,37 +34,48 @@ fun paymentInfo(from: String, category: String, cashback: String) {
     Row {
         Text(
             //Payment info mocked string
-            text = "Transaction info",
+            text = "Payment info",
             color = Color.White,
-            fontSize = 20.sp,
+            fontSize = 16.sp,
             fontFamily = AppFont.Girloy,
-            fontWeight = FontWeight.Normal,
-            modifier = Modifier.padding(top = 36.dp, bottom = 12.dp)
+            fontWeight = FontWeight.SemiBold,
+            textAlign = TextAlign.Start,
+            modifier = Modifier
+                .padding(top = 36.dp, bottom = 18.dp)
+                .fillMaxWidth()
         )
     }
 
     Column(
         modifier = Modifier
             .clip(shape = RoundedCornerShape(16.dp))
-            .background(Color.DarkGray)
+            .background(colorResource(id = R.color.colorMainGray))
             .fillMaxWidth()
             .padding(start = 16.dp, end = 16.dp)
     ) {
+        Spacer(modifier = Modifier
+            .fillMaxWidth()
+            .height(8.dp))
+
         paymentInfoRow(title = "Payment from", subtitle = from)
         Divider(
             Modifier
-                .fillMaxWidth()
+                .fillMaxWidth(0.98f)
                 .height(1.dp)
-                .alpha(0.5f), color = Color.White
+                .alpha(0.5f), color = colorResource(id = R.color.colorGray),
         )
         paymentInfoRow(title = "Categories", subtitle = category)
         Divider(
             Modifier
-                .fillMaxWidth()
+                .fillMaxWidth(0.98f)
                 .height(1.dp)
-                .alpha(0.5f), color = Color.White
+                .alpha(0.5f), color = colorResource(id = R.color.colorGray)
         )
         paymentInfoRow(title = "Cashback", subtitle = cashback)
+
+        Spacer(modifier = Modifier
+            .fillMaxWidth()
+            .height(8.dp))
     }
 }
 
@@ -76,19 +90,19 @@ fun paymentInfoRow(title: String, subtitle: String) {
         Text(
             //left string
             text = title,
-            color = Color.White,
-            fontSize = 16.sp,
+            color = colorResource(id = R.color.colorWhiteGray),
+            fontSize = 14.sp,
             fontFamily = AppFont.Girloy,
-            fontWeight = FontWeight.Normal
+            fontWeight = FontWeight.Medium
         )
 
         Text(
             //right string
             text = subtitle,
-            color = Color.White,
-            fontSize = 16.sp,
+            color = colorResource(id = R.color.colorWhiteGray),
+            fontSize = 14.sp,
             fontFamily = AppFont.Girloy,
-            fontWeight = FontWeight.Normal
+            fontWeight = FontWeight.Medium
         )
     }
 }
@@ -97,29 +111,29 @@ fun paymentInfoRow(title: String, subtitle: String) {
 fun paymentOption(text: String, image: Int) {
     Column(
         modifier = Modifier
-            .clip(shape = RoundedCornerShape(64.dp))
-            .padding(top = 16.dp, bottom = 16.dp)
-            .background(Color.DarkGray)
+            .width(180.dp)
+            .clip(shape = RoundedCornerShape(16.dp))
+            .background(colorResource(id = R.color.colorMainGray))
     ) {
         Image(
             modifier = Modifier
                 .clipToBounds()
-                .height(72.dp)
-                .width(72.dp)
-                .padding(end = 8.dp, bottom = 24.dp, start = 16.dp),
-            colorFilter = ColorFilter.tint(Color.Green),
-            painter = painterResource(id = R.drawable.ic_chart),
+                .height(60.dp)
+                .width(60.dp)
+                .padding(end = 8.dp, bottom = 16.dp, start = 16.dp, top = 12.dp),
+            colorFilter = ColorFilter.tint(colorResource(id = R.color.colorAccent)),
+            painter = painterResource(id = image),
             contentDescription = "budget chart"
         )
 
         Text(
             //Payment info mocked string
             text = text,
-            color = Color.White,
-            fontSize = 16.sp,
+            color = colorResource(id = R.color.colorWhiteGray),
+            fontSize = 14.sp,
             fontFamily = AppFont.Girloy,
-            fontWeight = FontWeight.Normal,
-            modifier = Modifier.padding(bottom = 12.dp, start = 16.dp)
+            fontWeight = FontWeight.SemiBold,
+            modifier = Modifier.padding(bottom = 24.dp, start = 16.dp)
         )
     }
 
