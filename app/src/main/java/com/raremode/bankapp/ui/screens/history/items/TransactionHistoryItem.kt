@@ -57,7 +57,6 @@ fun TransactionHistoryItem(
 ) {
 
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
-    val scope = rememberCoroutineScope()
     var showBottomSheet: Boolean by remember { mutableStateOf(false) }
 
 

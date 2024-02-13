@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.requiredWidthIn
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Divider
@@ -20,6 +21,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -111,7 +113,7 @@ fun paymentInfoRow(title: String, subtitle: String) {
 fun paymentOption(text: String, image: Int) {
     Column(
         modifier = Modifier
-            .width(180.dp)
+            .width((LocalConfiguration.current.screenWidthDp.dp / 2) - 24.dp)
             .clip(shape = RoundedCornerShape(16.dp))
             .background(colorResource(id = R.color.colorMainGray))
     ) {
