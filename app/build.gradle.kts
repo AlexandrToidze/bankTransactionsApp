@@ -115,4 +115,8 @@ dependencies {
         // Optional - Integration with RxJava
         implementation("androidx.compose.runtime:runtime-rxjava2")
 
+    // this is the material icon dependency
+// its size is large, so enable proguard in the production
+    implementation("androidx.compose.material:material-icons-extended")
+
 }
