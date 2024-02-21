@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import com.raremode.bankapp.R
 import com.raremode.bankapp.models.TransactionHistoryDateModel
 import com.raremode.bankapp.models.TransactionHistoryModel
+import com.raremode.bankapp.ui.screens.toolbar.Toolbar
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -102,6 +103,7 @@ fun TransactionHistoryList(serviceList: List<Any>) {
 }
 
 fun filterServiceList(list: List<Any>, query: String): List<Any> {
+    val isType = true
     return list.filter {
         (it is TransactionHistoryModel && it.service.contains(query, true))
                 || it is TransactionHistoryDateModel

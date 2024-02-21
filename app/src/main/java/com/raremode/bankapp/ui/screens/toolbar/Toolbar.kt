@@ -16,6 +16,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -31,18 +32,20 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.raremode.bankapp.R
-import com.raremode.bankapp.extensions.initFilterList
 import com.raremode.bankapp.extensions.isFilterByThisType
-import com.raremode.bankapp.extensions.updateFilterByThisType
 import com.raremode.bankapp.models.TransactionType
 import com.raremode.bankapp.models.toStr
+import com.raremode.bankapp.ui.viewmodels.TransactionFilterVM
 import com.raremode.bankapp.utils.AppFont
 
 @Composable
-fun Toolbar() {
+fun Toolbar(
+    viewModel: TransactionFilterVM = androidx.lifecycle.viewmodel.compose.viewModel()
+) {
     var expandedFilterMenu: Boolean by remember { mutableStateOf(false) }
 
-    var selectedFilterTypes: List<Pair<TransactionType, Boolean>> by remember { mutableStateOf( listOf<Pair<TransactionType, Boolean>>().initFilterList() ) }
+//    var selectedFilterTypes: List<Pair<TransactionType, Boolean>> by remember { mutableStateOf( listOf<Pair<TransactionType, Boolean>>().initFilterList() ) }
+    val selectedFilterTypes: List<Pair<TransactionType, Boolean>> = viewModel.state.collectAsState().value.selectedFilterTypes
 
     Row(
         Modifier
@@ -105,15 +108,15 @@ fun Toolbar() {
                 onDismissRequest = { expandedFilterMenu = false },
                 modifier = Modifier.background(colorResource(id = R.color.colorMainGray))
             ) {
-                TransactionType.values().forEach { type ->
+               selectedFilterTypes.forEach { type ->
                     DropdownMenuItem(
-                        text = { Text(text = type.toStr(), color = Color.White) },
+                        text = { Text(text = type.first.toStr(), color = Color.White) },
                         onClick = {
-                                  selectedFilterTypes = selectedFilterTypes.updateFilterByThisType(type)
-                            Log.d("SelectedFilterTypes", selectedFilterTypes.toString())
+                                  viewModel.updateFilterByThisType(type.first)
+                            Log.d("SelectedFilterTypes", viewModel.state.value.selectedFilterTypes.toString())
                                   },
                         leadingIcon = {
-                            if (selectedFilterTypes.isFilterByThisType(type)) {
+                            if (viewModel.state.value.selectedFilterTypes.isFilterByThisType(type.first)) {
                                 Image(
                                     modifier = Modifier
                                         .height(32.dp)
