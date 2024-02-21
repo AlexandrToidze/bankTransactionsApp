@@ -43,6 +43,7 @@ import com.bumptech.glide.integration.compose.GlideImage
 import com.raremode.bankapp.R
 import com.raremode.bankapp.extensions.retrieveServiceName
 import com.raremode.bankapp.models.TransactionHistoryModel
+import com.raremode.bankapp.models.toStr
 import com.raremode.bankapp.ui.screens.details.TransactionDetailsScreen
 import com.raremode.bankapp.utils.AppFont
 import com.raremode.bankapp.utils.Constants
@@ -146,7 +147,7 @@ fun TransactionHistoryItem(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    text = serviceModel.type,
+                    text = serviceModel.type.toStr(),
                     fontSize = 12.sp,
                     color = Color.Gray,
                     letterSpacing = TextUnit(2F, TextUnitType(1L)),

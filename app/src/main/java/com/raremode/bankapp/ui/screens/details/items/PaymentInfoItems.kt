@@ -125,7 +125,7 @@ fun paymentOption(text: String, image: Int) {
                 .padding(end = 8.dp, bottom = 16.dp, start = 16.dp, top = 12.dp),
             colorFilter = ColorFilter.tint(colorResource(id = R.color.colorAccent)),
             painter = painterResource(id = image),
-            contentDescription = "budget chart"
+            contentDescription = "option icon"
         )
 
         Text(

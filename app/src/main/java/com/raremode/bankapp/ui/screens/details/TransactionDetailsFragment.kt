@@ -39,6 +39,7 @@ import com.raremode.bankapp.extensions.isPositiveSum
 import com.raremode.bankapp.extensions.retrieveServiceName
 import com.raremode.bankapp.extensions.toCurrencyString
 import com.raremode.bankapp.models.TransactionHistoryModel
+import com.raremode.bankapp.models.toStr
 import com.raremode.bankapp.repository.TransactionsHistory
 import com.raremode.bankapp.ui.screens.details.items.paymentInfo
 import com.raremode.bankapp.ui.screens.details.items.paymentOption
@@ -127,7 +128,7 @@ fun transactionDetailsItem(transactionInfoModel: TransactionHistoryModel) {
         transactionInfoModel.apply {
             paymentInfo(
                 from = sumSubtitle,
-                category = type,
+                category = type.toStr(),
                 cashback = abs(sum / 100).toCurrencyString().dropSignsFromSum()
             )
         }
@@ -137,9 +138,9 @@ fun transactionDetailsItem(transactionInfoModel: TransactionHistoryModel) {
                 .fillMaxWidth()
                 .padding(top = 16.dp)
         ) {
-            paymentOption(text = "View receipt", image = R.drawable.ic_chart)
+            paymentOption(text = "View receipt", image = R.drawable.ic_receipt)
             Spacer(modifier = Modifier.width(16.dp))
-            paymentOption(text = "Split your payment", image = R.drawable.ic_filter)
+            paymentOption(text = "Split your payment", image = R.drawable.ic_split_payment)
         }
     }
 }
