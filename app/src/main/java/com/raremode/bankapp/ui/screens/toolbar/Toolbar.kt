@@ -9,6 +9,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.RemoveRedEye
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
@@ -26,8 +29,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -95,7 +100,9 @@ fun Toolbar(
                     .padding(start = 8.dp),
 //                colorFilter = ColorFilter.tint(Color.White),
                 colors = IconButtonDefaults.iconButtonColors(
-                    contentColor = Color.White
+                    contentColor =
+                    if (selectedFilterTypes.all { !it.second }) Color.White
+                    else colorResource(id = R.color.colorAccent)
                 ),
 //                painter = painterResource(id = R.drawable.ic_filter),
 //                contentDescription = "filter transactions"
@@ -122,7 +129,7 @@ fun Toolbar(
                                         .height(32.dp)
                                         .width(32.dp),
                                     colorFilter = ColorFilter.tint(Color.White),
-                                    painter = painterResource(id = R.drawable.ic_left_arrow),
+                                    painter = painterResource(id = R.drawable.ic_search),
                                     contentDescription = "quit from screen"
                                 )
                             }

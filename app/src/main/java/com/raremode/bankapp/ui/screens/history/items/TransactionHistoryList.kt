@@ -17,6 +17,7 @@ import androidx.compose.material3.SearchBar
 import androidx.compose.material3.SearchBarDefaults
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -28,13 +29,18 @@ import androidx.compose.ui.unit.dp
 import com.raremode.bankapp.R
 import com.raremode.bankapp.models.TransactionHistoryDateModel
 import com.raremode.bankapp.models.TransactionHistoryModel
-import com.raremode.bankapp.ui.screens.toolbar.Toolbar
+import com.raremode.bankapp.models.TransactionType
+import com.raremode.bankapp.ui.viewmodels.TransactionFilterVM
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TransactionHistoryList(serviceList: List<Any>) {
+fun TransactionHistoryList(
+    serviceList: List<Any>,
+    viewModel: TransactionFilterVM = androidx.lifecycle.viewmodel.compose.viewModel()
+) {
+    val filterTypes: List<Pair<TransactionType, Boolean>> = viewModel.state.collectAsState().value.selectedFilterTypes
     var queryString: String by remember { mutableStateOf("") } // Query for SearchBar
-    var filteredList = filterServiceList(serviceList, queryString)
+    var filteredList = filterServiceList(serviceList, queryString, filterTypes)
 
     LazyColumn(
         verticalArrangement = Arrangement.Top,
@@ -44,13 +50,13 @@ fun TransactionHistoryList(serviceList: List<Any>) {
         items(filteredList.size + 1) { position ->
             if (position == 0) {
                 SearchBar(modifier = Modifier
-                    .height(60.dp)
+                    .height(70.dp)
                     .fillMaxWidth()
                     .padding(start = 16.dp, end = 16.dp, bottom = 12.dp),
                     query = queryString,
                     onQueryChange = { newQuery ->
                         queryString = newQuery
-                        filteredList = filterServiceList(serviceList, queryString)
+                        filteredList = filterServiceList(serviceList, queryString, filterTypes)
                         Log.d("refreshQuery", filteredList.size.toString())
                     },
                     colors = SearchBarDefaults.colors(
@@ -102,11 +108,25 @@ fun TransactionHistoryList(serviceList: List<Any>) {
     }
 }
 
-fun filterServiceList(list: List<Any>, query: String): List<Any> {
-    val isType = true
-    return list.filter {
-        (it is TransactionHistoryModel && it.service.contains(query, true))
-                || it is TransactionHistoryDateModel
+fun filterServiceList(
+    list: List<Any>, query: String, filterTypes: List<Pair<TransactionType, Boolean>>
+): List<Any> {
+    val isDefaultFilter = filterTypes.all { !it.second } //if all filter types are inactive
+
+    return if (!isDefaultFilter) { //implemented sort by selected filter types
+        list.filter {
+            (it is TransactionHistoryModel && it.service.contains(
+                query, true
+            ) && filterTypes.contains(Pair(it.type, true))
+                    ) || it is TransactionHistoryDateModel
+        }
+    } else {
+        list.filter { //case for first open screen
+            (it is TransactionHistoryModel && it.service.contains(
+                query,
+                true
+            )) || it is TransactionHistoryDateModel
+        }
     }
 }
 

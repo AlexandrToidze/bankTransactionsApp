@@ -1,7 +1,7 @@
 package com.raremode.bankapp.ui.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
+import com.raremode.bankapp.extensions.initFilterList
 import com.raremode.bankapp.models.TransactionType
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.asStateFlow
 class TransactionFilterVM : ViewModel() {
 
     data class SelectedFilterTypesState(
-        val selectedFilterTypes: List<Pair<TransactionType, Boolean>> = emptyList()
+        val selectedFilterTypes: List<Pair<TransactionType, Boolean>> = listOf<Pair<TransactionType, Boolean>>().initFilterList()
     )
 
     private val _state = MutableStateFlow(
