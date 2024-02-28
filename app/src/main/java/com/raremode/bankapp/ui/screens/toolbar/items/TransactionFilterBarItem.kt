@@ -16,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.raremode.bankapp.R
@@ -26,7 +27,7 @@ fun transactionFilterBarItem(text: String, onClick: (() -> Unit), itemPadding: I
     Row(
         modifier = Modifier
             .padding(start = itemPadding.dp)
-            .clip(shape = RoundedCornerShape(16.dp))
+            .clip(shape = RoundedCornerShape(12.dp))
             .background(colorResource(id = R.color.colorMainGray))
             .clickable(onClick = onClick),
         verticalAlignment = Alignment.CenterVertically,
@@ -34,9 +35,10 @@ fun transactionFilterBarItem(text: String, onClick: (() -> Unit), itemPadding: I
         ) {
         Text(
             modifier = Modifier
-                .padding(8.dp, 8.dp, 2.dp, 8.dp),
+                .padding(8.dp, 6.dp, 2.dp, 6.dp),
             fontFamily = AppFont.Girloy,
             color = colorResource(id = R.color.colorGray),
+            fontWeight = FontWeight.Normal,
             fontSize = 12.sp,
             text = text
         )

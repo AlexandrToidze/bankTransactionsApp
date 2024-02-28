@@ -43,7 +43,7 @@ fun TransactionFilterBar(
 
     Row(
         modifier = Modifier
-            .padding(horizontal = 16.dp)
+            .padding(top = 12.dp, start = 16.dp, end = 20.dp)
             .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
     ) {
@@ -53,7 +53,7 @@ fun TransactionFilterBar(
                 .padding(end = 12.dp),
             fontFamily = AppFont.Girloy,
             color = colorResource(id = R.color.colorGray),
-            fontWeight = FontWeight.Normal,
+            fontWeight = FontWeight.Medium,
             text = "Categories: ",
             fontSize = 14.sp
         )
@@ -83,7 +83,7 @@ fun TransactionFilterBar(
                 },
             color = colorResource(id = R.color.colorGray),
             fontFamily = AppFont.Girloy,
-            fontWeight = FontWeight.Normal,
+            fontWeight = FontWeight.Medium,
             textAlign = TextAlign.End,
             text = "Clear all",
             fontSize = 12.sp
