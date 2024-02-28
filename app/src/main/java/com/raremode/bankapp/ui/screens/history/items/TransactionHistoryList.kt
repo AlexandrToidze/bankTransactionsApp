@@ -55,7 +55,7 @@ fun TransactionHistoryList(
                     SearchBar(modifier = Modifier
                         .height(70.dp)
                         .fillMaxWidth()
-                        .padding(start = 16.dp, end = 16.dp, bottom = 12.dp),
+                        .padding(start = 20.dp, end = 20.dp, bottom = 12.dp),
                         query = queryString,
                         onQueryChange = { newQuery ->
                             queryString = newQuery

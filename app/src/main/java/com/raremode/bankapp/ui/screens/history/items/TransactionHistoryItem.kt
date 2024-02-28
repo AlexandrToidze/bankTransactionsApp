@@ -68,7 +68,7 @@ fun TransactionHistoryItem(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 8.dp)
+            .padding(start = 20.dp, end = 20.dp, top = 4.dp, bottom = 4.dp)
             .clickable {
                 showBottomSheet = true
             }
@@ -91,8 +91,8 @@ fun TransactionHistoryItem(
             modifier = Modifier
                 .clip(CircleShape)
                 .background(Color.Black)
-                .height(48.dp)
-                .width(48.dp)
+                .height(42.dp)
+                .width(42.dp)
                 .align(Alignment.CenterVertically)
         ) {
 

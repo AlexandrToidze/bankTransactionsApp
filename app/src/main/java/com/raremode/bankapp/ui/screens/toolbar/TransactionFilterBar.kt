@@ -49,7 +49,7 @@ fun TransactionFilterBar(
     ) {
         Text(
             modifier = Modifier
-                .fillMaxWidth(0.26f)
+                .fillMaxWidth(0.2f)
                 .padding(end = 12.dp),
             fontFamily = AppFont.Girloy,
             color = colorResource(id = R.color.colorGray),
@@ -59,7 +59,7 @@ fun TransactionFilterBar(
         )
 
         LazyRow(modifier = Modifier
-            .fillMaxWidth(0.74f),
+            .fillMaxWidth(0.82f),
             content = {
                 items(count = selectedFilterTypes.size - 1) { index ->
                     if (selectedFilterTypes[index].second) {

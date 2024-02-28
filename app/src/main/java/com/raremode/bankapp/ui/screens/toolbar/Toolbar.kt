@@ -125,10 +125,10 @@ fun Toolbar(
                             if (viewModel.state.value.selectedFilterTypes.isFilterByThisType(type.first)) {
                                 Image(
                                     modifier = Modifier
-                                        .height(32.dp)
-                                        .width(32.dp),
+                                        .height(24.dp)
+                                        .width(24.dp),
                                     colorFilter = ColorFilter.tint(Color.White),
-                                    painter = painterResource(id = R.drawable.ic_search),
+                                    painter = painterResource(id = R.drawable.ic_ok),
                                     contentDescription = "quit from screen"
                                 )
                             }
