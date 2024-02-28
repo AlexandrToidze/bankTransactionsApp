@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class TransactionFilterVM : ViewModel() {
+class TransactionFilterViewModel : ViewModel() {
 
     data class SelectedFilterTypesState(
         val selectedFilterTypes: List<Pair<TransactionType, Boolean>> = listOf<Pair<TransactionType, Boolean>>().initFilterList()
@@ -28,6 +28,19 @@ class TransactionFilterVM : ViewModel() {
                 result[index] = Pair(it.first, !it.second)
             }
         }
+        _state.tryEmit(
+            _state.value.copy(
+                selectedFilterTypes = result
+            )
+        )
+    }
+
+    fun clearAllFilters() {
+        val result = state.value.selectedFilterTypes.toMutableList()
+        state.value.selectedFilterTypes.forEachIndexed { index, pair ->
+            result[index] = Pair(pair.first, false)
+        }
+
         _state.tryEmit(
             _state.value.copy(
                 selectedFilterTypes = result

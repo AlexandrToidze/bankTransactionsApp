@@ -30,15 +30,17 @@ import com.raremode.bankapp.R
 import com.raremode.bankapp.models.TransactionHistoryDateModel
 import com.raremode.bankapp.models.TransactionHistoryModel
 import com.raremode.bankapp.models.TransactionType
-import com.raremode.bankapp.ui.viewmodels.TransactionFilterVM
+import com.raremode.bankapp.ui.screens.toolbar.TransactionFilterBar
+import com.raremode.bankapp.ui.viewmodels.TransactionFilterViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TransactionHistoryList(
     serviceList: List<Any>,
-    viewModel: TransactionFilterVM = androidx.lifecycle.viewmodel.compose.viewModel()
+    viewModel: TransactionFilterViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
 ) {
-    val filterTypes: List<Pair<TransactionType, Boolean>> = viewModel.state.collectAsState().value.selectedFilterTypes
+    val filterTypes: List<Pair<TransactionType, Boolean>> =
+        viewModel.state.collectAsState().value.selectedFilterTypes
     var queryString: String by remember { mutableStateOf("") } // Query for SearchBar
     var filteredList = filterServiceList(serviceList, queryString, filterTypes)
 
@@ -48,61 +50,69 @@ fun TransactionHistoryList(
             .fillMaxSize()
     ) {
         items(filteredList.size + 1) { position ->
-            if (position == 0) {
-                SearchBar(modifier = Modifier
-                    .height(70.dp)
-                    .fillMaxWidth()
-                    .padding(start = 16.dp, end = 16.dp, bottom = 12.dp),
-                    query = queryString,
-                    onQueryChange = { newQuery ->
-                        queryString = newQuery
-                        filteredList = filterServiceList(serviceList, queryString, filterTypes)
-                        Log.d("refreshQuery", filteredList.size.toString())
-                    },
-                    colors = SearchBarDefaults.colors(
-                        containerColor = colorResource(id = R.color.colorMainGray),
-                        dividerColor = Color.White,
-                        inputFieldColors = TextFieldDefaults.colors(
-                            focusedTextColor = Color.White,
-                            unfocusedTextColor = Color.White,
-                            focusedLeadingIconColor = colorResource(id = R.color.colorGray),
-                            unfocusedLeadingIconColor = colorResource(id = R.color.colorGray)
-                        )
-                    ),
-                    leadingIcon = {
-                        Icon(imageVector = Icons.Default.Search, contentDescription = null)
-                    },
-                    onSearch = {},
-                    active = false,
-                    onActiveChange = {}) {
-
-                }
-            } else {
-                println("Build item at position $position")
-
-                Row(horizontalArrangement = Arrangement.Center) {
-                    when (filteredList[position - 1]) {
-                        is TransactionHistoryModel -> {
-                            TransactionHistoryItem(
-                                serviceModel = filteredList[position - 1]
-                                        as TransactionHistoryModel
+            when (position) {
+                0 -> {
+                    SearchBar(modifier = Modifier
+                        .height(70.dp)
+                        .fillMaxWidth()
+                        .padding(start = 16.dp, end = 16.dp, bottom = 12.dp),
+                        query = queryString,
+                        onQueryChange = { newQuery ->
+                            queryString = newQuery
+                            filteredList = filterServiceList(serviceList, queryString, filterTypes)
+                            Log.d("refreshQuery", filteredList.size.toString())
+                        },
+                        colors = SearchBarDefaults.colors(
+                            containerColor = colorResource(id = R.color.colorMainGray),
+                            dividerColor = Color.White,
+                            inputFieldColors = TextFieldDefaults.colors(
+                                focusedTextColor = Color.White,
+                                unfocusedTextColor = Color.White,
+                                focusedLeadingIconColor = colorResource(id = R.color.colorGray),
+                                unfocusedLeadingIconColor = colorResource(id = R.color.colorGray)
                             )
-                        }
+                        ),
+                        leadingIcon = {
+                            Icon(imageVector = Icons.Default.Search, contentDescription = null)
+                        },
+                        onSearch = {},
+                        active = false,
+                        onActiveChange = {}) {
 
-                        is TransactionHistoryDateModel -> {
-                            if (checkIfNeedDateSection(filteredList, position - 1)) {
-                                TransactionHistoryDateItem(
-                                    date = (filteredList[position - 1]
-                                            as TransactionHistoryDateModel).date
-                                )
-                            }
-                        }
-
-                        else -> Unit
                     }
                 }
 
-                Spacer(modifier = Modifier.height(4.dp))
+                1 -> {
+                    if (!filterTypes.all { !it.second }) TransactionFilterBar()
+                }
+
+                else -> {
+                    println("Build item at position $position")
+
+                    Row(horizontalArrangement = Arrangement.Center) {
+                        when (filteredList[position - 2]) {
+                            is TransactionHistoryModel -> {
+                                TransactionHistoryItem(
+                                    serviceModel = filteredList[position - 2]
+                                            as TransactionHistoryModel
+                                )
+                            }
+
+                            is TransactionHistoryDateModel -> {
+                                if (checkIfNeedDateSection(filteredList, position - 2)) {
+                                    TransactionHistoryDateItem(
+                                        date = (filteredList[position - 2]
+                                                as TransactionHistoryDateModel).date
+                                    )
+                                }
+                            }
+
+                            else -> Unit
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(4.dp))
+                }
             }
         }
     }
