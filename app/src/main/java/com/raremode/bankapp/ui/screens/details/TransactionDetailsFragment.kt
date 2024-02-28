@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -81,17 +82,25 @@ fun transactionDetailsItem(transactionInfoModel: TransactionHistoryModel) {
         Box(
             modifier = Modifier
                 .clip(CircleShape)
-                .background(Color.Gray)
+                .background(Color.Black)
                 .height(96.dp)
                 .width(96.dp)
         ) {
 
-            AsyncImage(
-                model = "${Constants.GLIDE_ICONS_LOAD_URL}${transactionInfoModel.service}",
-                contentDescription = "use Coil for load image for transaction details",
+//            AsyncImage(
+//                model = "${Constants.GLIDE_ICONS_LOAD_URL}${transactionInfoModel.service}",
+//                contentDescription = "use Coil for load image for transaction details",
+//                modifier = Modifier
+//                    .fillMaxHeight()
+//                    .fillMaxWidth()
+//            )
+
+            Image(
                 modifier = Modifier
-                    .fillMaxHeight()
-                    .fillMaxWidth()
+                    .fillMaxSize(),
+                contentScale = ContentScale.Crop,
+                painter = painterResource(id = transactionInfoModel.icon),
+                contentDescription = null
             )
         }
 

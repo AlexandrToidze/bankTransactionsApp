@@ -49,7 +49,7 @@ fun TransactionHistoryList(
         modifier = Modifier
             .fillMaxSize()
     ) {
-        items(filteredList.size + 1) { position ->
+        items(filteredList.size + 2) { position ->
             when (position) {
                 0 -> {
                     SearchBar(modifier = Modifier

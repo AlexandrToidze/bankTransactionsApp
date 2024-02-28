@@ -1,5 +1,6 @@
 package com.raremode.bankapp.ui.screens.history.items
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -8,12 +9,14 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
@@ -29,6 +32,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.capitalize
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.intl.LocaleList
@@ -92,11 +96,19 @@ fun TransactionHistoryItem(
                 .align(Alignment.CenterVertically)
         ) {
 
-            GlideImage(
-                model = "${Constants.GLIDE_ICONS_LOAD_URL}${serviceModel.service}",
-                contentDescription = "null",
-                contentScale = ContentScale.Crop
+            Image(
+                modifier = Modifier
+                    .fillMaxSize(),
+                contentScale = ContentScale.Crop,
+                painter = painterResource(id = serviceModel.icon),
+                contentDescription = null
             )
+
+//            GlideImage(
+//                model = "${Constants.GLIDE_ICONS_LOAD_URL}${serviceModel.service}",
+//                contentDescription = "null",
+//                contentScale = ContentScale.Crop
+//            )
 
 //            Text(
 //                text = service,
