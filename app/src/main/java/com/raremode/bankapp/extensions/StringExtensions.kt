@@ -3,6 +3,7 @@ package com.raremode.bankapp.extensions
 import androidx.compose.ui.text.capitalize
 import androidx.compose.ui.text.intl.LocaleList
 import androidx.core.net.toUri
+import kotlin.math.abs
 
 fun String.retrieveServiceName(): String {
     return this.toUri().authority
@@ -14,4 +15,11 @@ fun String.retrieveServiceName(): String {
 
 fun String.dropSignsFromSum(): String {
     return this.replace("+", "")
+}
+
+fun Double.toCashbackBoxForm(): String {
+//    return "+" + ((abs(this)).format(2))
+    val checkIfNearToTen = abs(this).toInt() % 10
+    val howMuchDigitsAfterComma = if (checkIfNearToTen == 0) "+%.1f" else "+%.2f"
+    return String.format(howMuchDigitsAfterComma, abs(this) * 0.01)
 }

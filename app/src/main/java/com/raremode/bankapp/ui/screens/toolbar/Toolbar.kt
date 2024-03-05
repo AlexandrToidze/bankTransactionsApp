@@ -52,7 +52,7 @@ fun Toolbar(
         Modifier
             .fillMaxWidth()
             .height(64.dp)
-            .padding(start = 16.dp, top = 12.dp, bottom = 12.dp, end = 16.dp),
+            .padding(start = 16.dp, top = 12.dp, bottom = 12.dp, end = 20.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {

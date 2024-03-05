@@ -15,11 +15,11 @@ import com.raremode.bankapp.ui.theme.BankAppTheme
 fun TransactionHistoryFragment() {
     val serviceList = TransactionsHistory().getTransactionsHistory()
 
-    BankAppTheme {
+    //BankAppTheme {
 
         Column {
             Toolbar()
             TransactionHistoryList(serviceList = serviceList)
         }
-    }
+    //}
 }

@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ModalBottomSheet
@@ -45,7 +46,10 @@ import androidx.core.net.toUri
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.raremode.bankapp.R
+import com.raremode.bankapp.extensions.isPositiveSum
 import com.raremode.bankapp.extensions.retrieveServiceName
+import com.raremode.bankapp.extensions.toCashbackBoxForm
+import com.raremode.bankapp.extensions.toTransactionHistoryItemSum
 import com.raremode.bankapp.models.TransactionHistoryModel
 import com.raremode.bankapp.models.toStr
 import com.raremode.bankapp.ui.screens.details.TransactionDetailsScreen
@@ -53,6 +57,7 @@ import com.raremode.bankapp.utils.AppFont
 import com.raremode.bankapp.utils.Constants
 import java.util.Currency
 import java.util.Locale
+import kotlin.math.abs
 
 @OptIn(ExperimentalGlideComposeApi::class, ExperimentalMaterial3Api::class)
 @Composable
@@ -67,11 +72,13 @@ fun TransactionHistoryItem(
 
     Row(
         modifier = Modifier
+//            .background(colorResource(id = R.color.colorAccent))
             .fillMaxWidth()
             .padding(start = 20.dp, end = 20.dp, top = 4.dp, bottom = 4.dp)
             .clickable {
                 showBottomSheet = true
-            }
+            },
+        verticalAlignment = Alignment.CenterVertically
     ) {
 
         if (showBottomSheet) {
@@ -90,7 +97,7 @@ fun TransactionHistoryItem(
         Box(
             modifier = Modifier
                 .clip(CircleShape)
-                .background(Color.Black)
+                .background(Color.Transparent)
                 .height(42.dp)
                 .width(42.dp)
                 .align(Alignment.CenterVertically)
@@ -125,7 +132,9 @@ fun TransactionHistoryItem(
                 .align(Alignment.CenterVertically)
         ) {
             Row(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 9.dp),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
@@ -135,17 +144,12 @@ fun TransactionHistoryItem(
                     fontFamily = AppFont.Girloy,
                     fontWeight = FontWeight.Medium
                 )
-                val sum = String.format(
-                    "%.2f ${Currency.getInstance(Locale.getDefault()).symbol}",
-                    serviceModel.sum
-                )
-                val formattedTransactionSum = if (serviceModel.sum > 0) "+$sum"
-                else sum
 
                 Text(
-                    text = formattedTransactionSum,
-                    color = if (serviceModel.sum > 0) Color.Green else Color.White,
+                    text = serviceModel.sum.toTransactionHistoryItemSum(),
+                    color = serviceModel.sum.isPositiveSum(),
                     fontSize = 16.sp,
+                    letterSpacing = (0.1).sp,
                     fontFamily = AppFont.Girloy,
                     fontWeight = FontWeight.Medium,
                     textAlign = TextAlign.End
@@ -167,14 +171,39 @@ fun TransactionHistoryItem(
                     fontWeight = FontWeight.Light
                 )
 
-                Text(
-                    text = serviceModel.sumSubtitle,
-                    color = Color.Gray,
-                    textAlign = TextAlign.End,
-                    fontSize = 12.sp,
-                    fontFamily = AppFont.Girloy,
-                    fontWeight = FontWeight.Light
-                )
+                Row(verticalAlignment = Alignment.Bottom) {
+
+                    if (serviceModel.sum < 0) {
+                        Box(
+                            modifier = Modifier
+                                .padding(bottom = 1.dp)
+                                .clip(shape = RoundedCornerShape(4.dp))
+                                .background(colorResource(id = R.color.colorMainGray))
+                        ) {
+                            Text(
+                                modifier = Modifier
+                                    .padding(horizontal = 4.dp, vertical = 0.dp),
+                                text = serviceModel.sum.toCashbackBoxForm(),
+                                color = colorResource(id = R.color.colorWhite),
+                                fontSize = 12.sp,
+                                letterSpacing = (0.1).sp,
+                                fontFamily = AppFont.Girloy,
+                                fontWeight = FontWeight.Medium
+                            )
+                        }
+                    }
+
+                    Text(
+                        modifier = Modifier
+                            .padding(top = 3.dp, start = 4.dp),
+                        text = serviceModel.sumSubtitle,
+                        color = Color.Gray,
+                        textAlign = TextAlign.End,
+                        fontSize = 12.sp,
+                        fontFamily = AppFont.Girloy,
+                        fontWeight = FontWeight.Light
+                    )
+                }
             }
 
 //            Box(

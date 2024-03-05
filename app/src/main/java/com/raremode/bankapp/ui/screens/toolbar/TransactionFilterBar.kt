@@ -65,7 +65,7 @@ fun TransactionFilterBar(
                     if (selectedFilterTypes[index].second) {
                         transactionFilterBarItem(
                             text = selectedFilterTypes[index].first.toStr(),
-                            itemPadding = if (index != 0) 8 else 0,
+                            itemPadding = if (index != 0) 4 else 0,
                             onClick = {
                                 viewModel.updateFilterByThisType(selectedFilterTypes[index].first)
                             }

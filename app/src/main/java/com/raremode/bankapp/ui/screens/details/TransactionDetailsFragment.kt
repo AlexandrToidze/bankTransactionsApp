@@ -39,6 +39,7 @@ import com.raremode.bankapp.extensions.dropSignsFromSum
 import com.raremode.bankapp.extensions.isPositiveSum
 import com.raremode.bankapp.extensions.retrieveServiceName
 import com.raremode.bankapp.extensions.toCurrencyString
+import com.raremode.bankapp.extensions.toTransactionHistoryItemSum
 import com.raremode.bankapp.models.TransactionHistoryModel
 import com.raremode.bankapp.models.toStr
 import com.raremode.bankapp.repository.TransactionsHistory
@@ -51,7 +52,7 @@ import kotlin.math.abs
 
 @Composable
 fun TransactionDetailsScreen(transactionInfoModel: TransactionHistoryModel) {
-    BankAppTheme(darkTheme = true) {
+//    BankAppTheme(darkTheme = true) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -69,7 +70,7 @@ fun TransactionDetailsScreen(transactionInfoModel: TransactionHistoryModel) {
 //            )
             transactionDetailsItem(transactionInfoModel)
         }
-    }
+//    }
 }
 
 @Composable
@@ -77,7 +78,7 @@ fun transactionDetailsItem(transactionInfoModel: TransactionHistoryModel) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
-            .padding(start = 16.dp, end = 16.dp, top = 20.dp)
+            .padding(start = 20.dp, end = 20.dp, top = 20.dp)
     ) {
         Box(
             modifier = Modifier
@@ -119,6 +120,7 @@ fun transactionDetailsItem(transactionInfoModel: TransactionHistoryModel) {
             text = transactionInfoModel.transactionDate,
             color = Color.Gray,
             fontSize = 15.sp,
+            letterSpacing = (0.4).sp,
             fontFamily = AppFont.Girloy,
             fontWeight = FontWeight.SemiBold,
             modifier = Modifier.padding(top = 8.dp)
@@ -126,7 +128,7 @@ fun transactionDetailsItem(transactionInfoModel: TransactionHistoryModel) {
 
         Text(
             //transaction sum
-            text = transactionInfoModel.sum.toCurrencyString(),
+            text = transactionInfoModel.sum.toTransactionHistoryItemSum(),
             color = transactionInfoModel.sum.isPositiveSum(),
             fontSize = 26.sp,
             fontFamily = AppFont.Girloy,
@@ -138,7 +140,8 @@ fun transactionDetailsItem(transactionInfoModel: TransactionHistoryModel) {
             paymentInfo(
                 from = sumSubtitle,
                 category = type.toStr(),
-                cashback = abs(sum / 100).toCurrencyString().dropSignsFromSum()
+                cashback = if (sum < 0) abs(sum / 100).toCurrencyString().dropSignsFromSum()
+                else "-  "
             )
         }
 

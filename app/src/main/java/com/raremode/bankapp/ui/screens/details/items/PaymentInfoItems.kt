@@ -21,6 +21,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -62,16 +63,18 @@ fun paymentInfo(from: String, category: String, cashback: String) {
         paymentInfoRow(title = "Payment from", subtitle = from)
         Divider(
             Modifier
-                .fillMaxWidth(0.98f)
-                .height(1.dp)
-                .alpha(0.5f), color = colorResource(id = R.color.colorGray),
+                .padding(horizontal = 8.dp)
+                .fillMaxWidth()
+                .height((1.5).dp)
+                .alpha(0.2f), color = colorResource(id = R.color.colorGray),
         )
         paymentInfoRow(title = "Categories", subtitle = category)
         Divider(
             Modifier
-                .fillMaxWidth(0.98f)
-                .height(1.dp)
-                .alpha(0.5f), color = colorResource(id = R.color.colorGray)
+                .padding(horizontal = 8.dp)
+                .fillMaxWidth()
+                .height((1.5).dp)
+                .alpha(0.2f), color = colorResource(id = R.color.colorGray),
         )
         paymentInfoRow(title = "Cashback", subtitle = cashback)
 
@@ -120,10 +123,11 @@ fun paymentOption(text: String, image: Int) {
         Image(
             modifier = Modifier
                 .clipToBounds()
-                .height(60.dp)
-                .width(60.dp)
+                .height(54.dp)
+                .width(54.dp)
                 .padding(end = 8.dp, bottom = 16.dp, start = 16.dp, top = 12.dp),
             colorFilter = ColorFilter.tint(colorResource(id = R.color.colorAccent)),
+            contentScale = ContentScale.FillWidth,
             painter = painterResource(id = image),
             contentDescription = "option icon"
         )
@@ -132,9 +136,9 @@ fun paymentOption(text: String, image: Int) {
             //Payment info mocked string
             text = text,
             color = colorResource(id = R.color.colorWhiteGray),
-            fontSize = 14.sp,
+            fontSize = 16.sp,
             fontFamily = AppFont.Girloy,
-            fontWeight = FontWeight.SemiBold,
+            fontWeight = FontWeight.Medium,
             modifier = Modifier.padding(bottom = 24.dp, start = 16.dp)
         )
     }
