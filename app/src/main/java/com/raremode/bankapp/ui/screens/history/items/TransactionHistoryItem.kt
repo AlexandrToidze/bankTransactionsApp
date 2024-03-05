@@ -74,7 +74,7 @@ fun TransactionHistoryItem(
         modifier = Modifier
 //            .background(colorResource(id = R.color.colorAccent))
             .fillMaxWidth()
-            .padding(start = 20.dp, end = 20.dp, top = 4.dp, bottom = 4.dp)
+            .padding(start = 20.dp, end = 20.dp)
             .clickable {
                 showBottomSheet = true
             },
@@ -110,40 +110,54 @@ fun TransactionHistoryItem(
                 painter = painterResource(id = serviceModel.icon),
                 contentDescription = null
             )
-
-//            GlideImage(
-//                model = "${Constants.GLIDE_ICONS_LOAD_URL}${serviceModel.service}",
-//                contentDescription = "null",
-//                contentScale = ContentScale.Crop
-//            )
-
-//            Text(
-//                text = service,
-//                modifier = Modifier
-//                    .align(Alignment.Center)
-//            )
         }
 
-        Spacer(modifier = Modifier.width(6.dp))
+        Spacer(modifier = Modifier.width(3.dp))
 
         Column(
             modifier = Modifier
-                .padding(horizontal = 8.dp, vertical = 4.dp)
+                .padding(horizontal = 8.dp, vertical = 0.dp)
                 .align(Alignment.CenterVertically)
         ) {
             Row(
                 modifier = Modifier
+//                    .background(Color.Yellow)
                     .fillMaxWidth()
                     .padding(top = 9.dp),
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.Bottom
             ) {
-                Text(
-                    text = serviceModel.service.retrieveServiceName(),
-                    color = Color.White,
-                    fontSize = 16.sp,
-                    fontFamily = AppFont.Girloy,
-                    fontWeight = FontWeight.Medium
-                )
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text(
+                        text = serviceModel.service.retrieveServiceName(),
+                        color = Color.White,
+                        fontSize = 16.sp,
+                        fontFamily = AppFont.Girloy,
+                        fontWeight = FontWeight.Medium
+                    )
+
+                    if (serviceModel.description != "") {
+                        Box(
+                            modifier = Modifier
+                                .padding(bottom = 0.dp, start = 8.dp)
+                                .clip(shape = RoundedCornerShape(6.dp))
+                                .background(colorResource(id = R.color.colorGray))
+                        ) {
+                            Text(
+                                modifier = Modifier
+                                    .padding(horizontal = 4.dp, vertical = 2.dp),
+                                text = serviceModel.description,
+                                color = colorResource(id = R.color.colorWhite),
+                                fontSize = 13.sp,
+                                letterSpacing = (0.1).sp,
+                                fontFamily = AppFont.Girloy,
+                                fontWeight = FontWeight.Normal
+                            )
+                        }
+                    }
+
+
+                }
 
                 Text(
                     text = serviceModel.sum.toTransactionHistoryItemSum(),
@@ -156,10 +170,14 @@ fun TransactionHistoryItem(
                 )
             }
 
-            Spacer(modifier = Modifier.height(6.dp))
+            Spacer(modifier = Modifier.height(6.dp)
+//                .background(Color.Red)
+            )
 
             Row(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth()
+//                    .background(Color.Green)
+                ,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
@@ -214,7 +232,9 @@ fun TransactionHistoryItem(
 //                    .background(color)
 //            )
 
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(8.dp)
+//                .background(Color.Blue)
+            )
         }
     }
 }

@@ -123,9 +123,8 @@ fun paymentOption(text: String, image: Int) {
         Image(
             modifier = Modifier
                 .clipToBounds()
-                .height(54.dp)
                 .width(54.dp)
-                .padding(end = 8.dp, bottom = 16.dp, start = 16.dp, top = 12.dp),
+                .padding(end = 8.dp, bottom = 16.dp, start = 16.dp, top = 16.dp),
             colorFilter = ColorFilter.tint(colorResource(id = R.color.colorAccent)),
             contentScale = ContentScale.FillWidth,
             painter = painterResource(id = image),
@@ -136,7 +135,7 @@ fun paymentOption(text: String, image: Int) {
             //Payment info mocked string
             text = text,
             color = colorResource(id = R.color.colorWhiteGray),
-            fontSize = 16.sp,
+            fontSize = 15.sp,
             fontFamily = AppFont.Girloy,
             fontWeight = FontWeight.Medium,
             modifier = Modifier.padding(bottom = 24.dp, start = 16.dp)

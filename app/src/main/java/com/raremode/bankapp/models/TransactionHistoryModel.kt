@@ -7,6 +7,7 @@ data class TransactionHistoryModel(
     @DrawableRes
     val icon: Int = R.drawable.ic_search,
     val service: String,
+    val description: String = "",
     val type: TransactionType = TransactionType.OTHER,
     val sum: Double,
     val sumSubtitle: String = "BBank debit",

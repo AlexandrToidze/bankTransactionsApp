@@ -59,6 +59,7 @@ class TransactionsHistory() {
             TransactionHistoryModel(
                 icon = R.drawable.ebay_logo,
                 service = "http://ebay.com/",
+                description = "Sales revenue",
                 sum = (3169.46),
                 type = JOB,
                 transactionDate = "February 12, 19:21 a.m."
