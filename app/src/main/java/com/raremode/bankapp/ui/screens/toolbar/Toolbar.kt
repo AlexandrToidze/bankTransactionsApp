@@ -58,8 +58,8 @@ fun Toolbar(
     ) {
         Image(
             modifier = Modifier
-                .height(32.dp)
-                .width(32.dp),
+                .height(28.dp)
+                .width(28.dp),
             colorFilter = ColorFilter.tint(Color.White),
             painter = painterResource(id = R.drawable.ic_left_arrow),
             contentDescription = "quit from screen"
@@ -74,12 +74,12 @@ fun Toolbar(
             modifier = Modifier.padding(start = 32.dp)
         )
 
-        Row {
+        Row(verticalAlignment = Alignment.CenterVertically) {
             Image(
                 modifier = Modifier
                     .clipToBounds()
-                    .height(36.dp)
-                    .width(36.dp)
+                    .height(33.dp)
+                    .width(39.dp)
                     .padding(end = 8.dp),
                 colorFilter = ColorFilter.tint(Color.White),
                 painter = painterResource(id = R.drawable.ic_chart),
@@ -113,7 +113,14 @@ fun Toolbar(
             ) {
                 selectedFilterTypes.forEach { type ->
                     DropdownMenuItem(
-                        text = { Text(text = type.first.toStr(), color = Color.White) },
+                        text = {
+                            Text(
+                                text = type.first.toStr(),
+                                fontFamily = AppFont.Girloy,
+                                fontWeight = FontWeight.Medium,
+                                color = Color.White
+                            )
+                        },
                         onClick = {
                             viewModel.updateFilterByThisType(type.first)
                             Log.d(

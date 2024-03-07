@@ -49,9 +49,7 @@ fun TransactionDetailsScreen(transactionInfoModel: TransactionHistoryModel) {
             .fillMaxHeight(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Column() {
             transactionDetailsItem(transactionInfoModel)
-        }
     }
 }
 
@@ -86,7 +84,7 @@ fun transactionDetailsItem(transactionInfoModel: TransactionHistoryModel) {
             fontSize = 20.sp,
             fontFamily = AppFont.Girloy,
             fontWeight = FontWeight.SemiBold,
-            modifier = Modifier.padding(top = 12.dp)
+            modifier = Modifier.padding(top = 10.dp)
         )
 
         Text(
@@ -108,7 +106,7 @@ fun transactionDetailsItem(transactionInfoModel: TransactionHistoryModel) {
             lineHeight = 28.sp,
             fontFamily = AppFont.Girloy,
             fontWeight = FontWeight.SemiBold,
-            modifier = Modifier.padding(top = 12.dp)
+            modifier = Modifier.padding(top = 11.dp)
         )
 
         transactionInfoModel.apply {
@@ -173,7 +171,7 @@ fun paymentAddressView() {
 
         Box(
             modifier = Modifier
-                .padding(bottom = 16.dp)
+                .padding(bottom = 8.dp)
                 .clip(shape = RoundedCornerShape(16.dp))
                 .background(colorResource(id = R.color.colorGray))
         ) {

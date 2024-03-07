@@ -3,7 +3,13 @@ package com.raremode.bankapp.repository
 import com.raremode.bankapp.R
 import com.raremode.bankapp.models.TransactionHistoryDateModel
 import com.raremode.bankapp.models.TransactionHistoryModel
-import com.raremode.bankapp.models.TransactionType.*
+import com.raremode.bankapp.models.TransactionType.CLOTHING
+import com.raremode.bankapp.models.TransactionType.EDUCATION
+import com.raremode.bankapp.models.TransactionType.ENTERTAINMENTS
+import com.raremode.bankapp.models.TransactionType.FASTFOOD
+import com.raremode.bankapp.models.TransactionType.JOB
+import com.raremode.bankapp.models.TransactionType.SHOPPING
+import com.raremode.bankapp.models.TransactionType.TECHNIC
 
 class TransactionsHistory() {
     fun getTransactionsHistory(): List<Any> {
@@ -23,7 +29,7 @@ class TransactionsHistory() {
             TransactionHistoryModel(
                 icon = R.drawable.facebook_logo,
                 service = "http://facebook.com/",
-                sum = (-390.20),
+                sum = (-90.20),
                 type = ENTERTAINMENTS,
                 sumSubtitle = "BBank credit",
                 transactionDate = "February 13, 12:43 a.m."
@@ -32,7 +38,7 @@ class TransactionsHistory() {
             TransactionHistoryModel(
                 icon = R.drawable.google_logo,
                 service = "http://google.com/",
-                sum = (-521.22),
+                sum = (-121.22),
                 transactionDate = "February 13, 12:43 a.m."
             ),
 
@@ -74,7 +80,7 @@ class TransactionsHistory() {
             ),
 
             TransactionHistoryDateModel(
-                date = "Later"
+                date = "March 5"
             ),
 
             TransactionHistoryModel(
@@ -100,7 +106,26 @@ class TransactionsHistory() {
                 sum = (-169.31),
                 type = SHOPPING,
                 transactionDate = "February 12, 19:21 a.m."
+            ),
 
+
+            TransactionHistoryDateModel(
+                date = "Later"
+            ),
+
+            TransactionHistoryModel(
+                icon = R.drawable.wallmart_logo,
+                service = "http://wallmart.com/",
+                type = SHOPPING,
+                sum = (-134.00),
+                transactionDate = "February 12, 19:21 a.m."
+            ),
+
+            TransactionHistoryModel(
+                icon = R.drawable.google_logo,
+                service = "http://google.com/",
+                sum = (-98.00),
+                transactionDate = "February 13, 12:43 a.m."
             ),
         )
     }

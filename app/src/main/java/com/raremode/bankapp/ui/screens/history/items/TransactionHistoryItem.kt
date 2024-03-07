@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -45,6 +46,7 @@ import com.raremode.bankapp.models.TransactionHistoryModel
 import com.raremode.bankapp.models.toStr
 import com.raremode.bankapp.ui.screens.details.TransactionDetailsScreen
 import com.raremode.bankapp.utils.AppFont
+import kotlin.math.abs
 
 @OptIn(ExperimentalGlideComposeApi::class, ExperimentalMaterial3Api::class)
 @Composable
@@ -64,14 +66,13 @@ fun TransactionHistoryItem(
             .padding(horizontal = 20.dp)
             .clickable {
                 showBottomSheet = true
-            },
-        verticalAlignment = Alignment.CenterVertically
+            }, verticalAlignment = Alignment.CenterVertically
     ) {
 
         if (showBottomSheet) {
             ModalBottomSheet(
                 containerColor = colorResource(id = R.color.colorBlack),
-//                modifier = Modifier.fillMaxHeight(0.9f),
+                modifier = Modifier.fillMaxHeight(0.9f),
                 onDismissRequest = {
                     showBottomSheet = false
                 },
@@ -91,8 +92,7 @@ fun TransactionHistoryItem(
         ) {
 
             Image(
-                modifier = Modifier
-                    .fillMaxSize(),
+                modifier = Modifier.fillMaxSize(),
                 contentScale = ContentScale.Crop,
                 painter = painterResource(id = serviceModel.icon),
                 contentDescription = null
@@ -110,7 +110,7 @@ fun TransactionHistoryItem(
                 modifier = Modifier
 //                    .background(Color.Yellow)
                     .fillMaxWidth()
-                    .padding(top = 9.dp),
+                    .padding(top = 11.dp),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.Bottom
             ) {
@@ -131,8 +131,7 @@ fun TransactionHistoryItem(
                                 .background(colorResource(id = R.color.colorGray))
                         ) {
                             Text(
-                                modifier = Modifier
-                                    .padding(horizontal = 6.dp, vertical = 2.dp),
+                                modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp),
                                 text = serviceModel.description,
                                 color = colorResource(id = R.color.colorWhite),
                                 fontSize = 13.sp,
@@ -157,15 +156,15 @@ fun TransactionHistoryItem(
                 )
             }
 
-            Spacer(modifier = Modifier.height(6.dp)
+            Spacer(
+                modifier = Modifier.height(6.dp)
 //                .background(Color.Red)
             )
 
             Row(
                 modifier = Modifier.fillMaxWidth()
 //                    .background(Color.Green)
-                ,
-                horizontalArrangement = Arrangement.SpaceBetween
+                , horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
                     text = serviceModel.type.toStr(),
@@ -179,28 +178,33 @@ fun TransactionHistoryItem(
                 Row(verticalAlignment = Alignment.Bottom) {
 
                     if (serviceModel.sum < 0) {
+                        val isBigCashback = abs(serviceModel.sum / 100.0) > 5.0
+
                         Box(
                             modifier = Modifier
                                 .padding(bottom = 1.dp)
                                 .clip(shape = RoundedCornerShape(4.dp))
-                                .background(colorResource(id = R.color.colorMainGray))
+                                .background(
+                                    colorResource(
+                                        id = if (isBigCashback) R.color.colorAccent
+                                        else R.color.colorMainGray
+                                    )
+                                )
                         ) {
                             Text(
-                                modifier = Modifier
-                                    .padding(horizontal = 4.dp, vertical = 0.dp),
+                                modifier = Modifier.padding(horizontal = 4.dp, vertical = 0.dp),
                                 text = serviceModel.sum.toCashbackBoxForm(),
-                                color = colorResource(id = R.color.colorWhite),
+                                color = colorResource(id = if (isBigCashback) R.color.colorBlack else R.color.colorWhite),
                                 fontSize = 12.sp,
                                 letterSpacing = (0.1).sp,
                                 fontFamily = AppFont.Girloy,
-                                fontWeight = FontWeight.Medium
+                                fontWeight = FontWeight.SemiBold
                             )
                         }
                     }
 
                     Text(
-                        modifier = Modifier
-                            .padding(top = 3.dp, start = 4.dp),
+                        modifier = Modifier.padding(top = 3.dp, start = 4.dp),
                         text = serviceModel.sumSubtitle,
                         color = Color.Gray,
                         textAlign = TextAlign.End,
@@ -220,7 +224,8 @@ fun TransactionHistoryItem(
 //                    .background(color)
 //            )
 
-            Spacer(modifier = Modifier.height(8.dp)
+            Spacer(
+                modifier = Modifier.height(6.dp)
 //                .background(Color.Blue)
             )
         }
