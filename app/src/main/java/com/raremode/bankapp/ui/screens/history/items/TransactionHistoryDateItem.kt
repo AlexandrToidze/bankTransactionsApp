@@ -16,9 +16,10 @@ fun TransactionHistoryDateItem(date: String = "Today") {
         text = date,
         color = Color.White,
         fontFamily = AppFont.Girloy,
+        letterSpacing = (0.1).sp,
         fontWeight = FontWeight.SemiBold,
         fontSize = 18.sp,
         modifier = Modifier
-            .padding(start = 20.dp, top = 12.dp, bottom = 4.dp)
+            .padding(start = 20.dp, top = 14.dp, bottom = 8.dp)
     )
 }

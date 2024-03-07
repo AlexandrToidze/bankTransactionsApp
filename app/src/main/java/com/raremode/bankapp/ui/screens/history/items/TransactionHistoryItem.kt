@@ -34,8 +34,6 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.TextUnit
-import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
@@ -64,7 +62,7 @@ fun TransactionHistoryItem(
         modifier = Modifier
 //            .background(colorResource(id = R.color.colorAccent))
             .fillMaxWidth()
-            .padding(start = 20.dp, end = 20.dp)
+            .padding(horizontal = 20.dp)
             .clickable {
                 showBottomSheet = true
             },
@@ -106,7 +104,7 @@ fun TransactionHistoryItem(
 
         Column(
             modifier = Modifier
-                .padding(horizontal = 8.dp, vertical = 0.dp)
+                .padding(start = 8.dp)
                 .align(Alignment.CenterVertically)
         ) {
             Row(
@@ -174,7 +172,7 @@ fun TransactionHistoryItem(
                     text = serviceModel.type.toStr(),
                     fontSize = 12.sp,
                     color = Color.Gray,
-                    letterSpacing = TextUnit(2F, TextUnitType(1L)),
+                    letterSpacing = (0.1).sp,
                     fontFamily = AppFont.Girloy,
                     fontWeight = FontWeight.Light
                 )
@@ -207,6 +205,7 @@ fun TransactionHistoryItem(
                         text = serviceModel.sumSubtitle,
                         color = Color.Gray,
                         textAlign = TextAlign.End,
+                        letterSpacing = (0.1).sp,
                         fontSize = 12.sp,
                         fontFamily = AppFont.Girloy,
                         fontWeight = FontWeight.Light

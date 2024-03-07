@@ -2,6 +2,7 @@ package com.raremode.bankapp.ui.screens.toolbar
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -41,7 +42,7 @@ fun TransactionFilterBar(
     ) {
         Text(
             modifier = Modifier
-                .fillMaxWidth(0.2f)
+//                .fillMaxWidth(0.2f)
                 .padding(end = 12.dp),
             fontFamily = AppFont.Girloy,
             color = colorResource(id = R.color.colorGray),
@@ -51,7 +52,8 @@ fun TransactionFilterBar(
         )
 
         LazyRow(modifier = Modifier
-            .fillMaxWidth(0.82f),
+            .fillMaxWidth(0.78f)
+            ,
             content = {
                 items(count = selectedFilterTypes.size - 1) { index ->
                     if (selectedFilterTypes[index].second) {
@@ -66,13 +68,16 @@ fun TransactionFilterBar(
                 }
             })
 
+        Spacer(modifier = Modifier.weight(0.1f))
+
         Text(
             modifier = Modifier
                 .padding(start = 16.dp)
-                .width(56.dp)
+                .width(106.dp)
                 .clickable {
                     viewModel.clearAllFilters()
                 },
+            maxLines = 1,
             color = colorResource(id = R.color.colorGray),
             fontFamily = AppFont.Girloy,
             fontWeight = FontWeight.Medium,
