@@ -17,7 +17,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
@@ -25,7 +24,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,17 +32,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.capitalize
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.intl.LocaleList
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.net.toUri
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
-import com.bumptech.glide.integration.compose.GlideImage
 import com.raremode.bankapp.R
 import com.raremode.bankapp.extensions.isPositiveSum
 import com.raremode.bankapp.extensions.retrieveServiceName
@@ -54,10 +48,6 @@ import com.raremode.bankapp.models.TransactionHistoryModel
 import com.raremode.bankapp.models.toStr
 import com.raremode.bankapp.ui.screens.details.TransactionDetailsScreen
 import com.raremode.bankapp.utils.AppFont
-import com.raremode.bankapp.utils.Constants
-import java.util.Currency
-import java.util.Locale
-import kotlin.math.abs
 
 @OptIn(ExperimentalGlideComposeApi::class, ExperimentalMaterial3Api::class)
 @Composable
@@ -145,13 +135,13 @@ fun TransactionHistoryItem(
                         ) {
                             Text(
                                 modifier = Modifier
-                                    .padding(horizontal = 4.dp, vertical = 2.dp),
+                                    .padding(horizontal = 6.dp, vertical = 2.dp),
                                 text = serviceModel.description,
                                 color = colorResource(id = R.color.colorWhite),
                                 fontSize = 13.sp,
                                 letterSpacing = (0.1).sp,
                                 fontFamily = AppFont.Girloy,
-                                fontWeight = FontWeight.Normal
+                                fontWeight = FontWeight.Medium
                             )
                         }
                     }
