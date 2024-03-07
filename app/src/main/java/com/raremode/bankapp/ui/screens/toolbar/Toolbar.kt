@@ -58,7 +58,7 @@ fun Toolbar(
     ) {
         Image(
             modifier = Modifier
-                .height(28.dp)
+                .height(26.dp)
                 .width(28.dp),
             colorFilter = ColorFilter.tint(Color.White),
             painter = painterResource(id = R.drawable.ic_left_arrow),
@@ -70,6 +70,7 @@ fun Toolbar(
             color = Color.White,
             fontFamily = AppFont.Girloy,
             fontWeight = FontWeight.Medium,
+            letterSpacing = (0.1).sp,
             fontSize = 20.sp,
             modifier = Modifier.padding(start = 32.dp)
         )
@@ -78,7 +79,7 @@ fun Toolbar(
             Image(
                 modifier = Modifier
                     .clipToBounds()
-                    .height(33.dp)
+                    .height(31.dp)
                     .width(39.dp)
                     .padding(end = 8.dp),
                 colorFilter = ColorFilter.tint(Color.White),
@@ -91,8 +92,8 @@ fun Toolbar(
                     expandedFilterMenu = !expandedFilterMenu
                 },
                 modifier = Modifier
-                    .height(32.dp)
-                    .width(32.dp)
+                    .height(30.dp)
+                    .width(30.dp)
                     .padding(start = 8.dp),
 //                colorFilter = ColorFilter.tint(Color.White),
                 colors = IconButtonDefaults.iconButtonColors(

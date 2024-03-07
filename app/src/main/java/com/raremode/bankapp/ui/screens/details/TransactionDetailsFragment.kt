@@ -58,6 +58,8 @@ fun transactionDetailsItem(transactionInfoModel: TransactionHistoryModel) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
+            //.scrollable() use it for enable bottom sheet scrolling
+            //start optimize project folders names, files destinations, start planning of api model for my screen data class
             .padding(start = 20.dp, end = 20.dp, top = 20.dp)
     ) {
         Box(
