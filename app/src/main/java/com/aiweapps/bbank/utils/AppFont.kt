@@ -8,12 +8,12 @@ import com.aiweapps.bbank.R
 
 object AppFont {
     val Girloy = FontFamily(
-        Font(R.font.girloy_thin, FontWeight.Thin),
-        Font(R.font.girloy_light, FontWeight.Light),
-        Font(R.font.girloy_regular, FontWeight.Normal),
-        Font(R.font.girloy_medium, FontWeight.Medium),
-        Font(R.font.girloy_semibold, FontWeight.SemiBold),
-        Font(R.font.girloy_extrabold, FontWeight.ExtraBold)
+        Font(R.font.gilroy_thin, FontWeight.Thin),
+        Font(R.font.gilroy_light, FontWeight.Light),
+        Font(R.font.gilroy_regular, FontWeight.Normal),
+        Font(R.font.gilroy_medium, FontWeight.Medium),
+        Font(R.font.gilroy_semibold, FontWeight.SemiBold),
+        Font(R.font.gilroy_extrabold, FontWeight.ExtraBold)
         )
 }
 

@@ -109,11 +109,9 @@ fun transactionDetailsItem(transactionInfoModel: TransactionHistoryModel) {
                 transactionDetailsPaymentInfoView(
                     from = sumSubtitle,
                     category = type.toStr(LocalContext.current),
-                    cashback = sum.toTransactionCashbackForm
-                        (
-                        withCurrency = true,
-                        withSign = false
-                    )
+                    cashback = if (sum < 0) sum.toTransactionCashbackForm(
+                        withCurrency = true, withSign = false
+                    ) else "-  "
                 )
             }
             paymentAddressView()
