@@ -36,7 +36,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.aiweapps.bbank.R
 import com.aiweapps.bbank.extensions.isPositiveSum
 import com.aiweapps.bbank.extensions.retrieveServiceName
@@ -48,7 +47,7 @@ import com.aiweapps.bbank.ui.screens.details.TransactionDetailsScreen
 import com.aiweapps.bbank.utils.AppFont
 import kotlin.math.abs
 
-@OptIn(ExperimentalGlideComposeApi::class, ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TransactionHistoryItem(
     serviceModel: TransactionHistoryModel,

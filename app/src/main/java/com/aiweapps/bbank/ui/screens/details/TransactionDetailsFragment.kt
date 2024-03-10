@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
@@ -49,91 +50,93 @@ fun TransactionDetailsScreen(transactionInfoModel: TransactionHistoryModel) {
             .fillMaxHeight(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-            transactionDetailsItem(transactionInfoModel)
+        transactionDetailsItem(transactionInfoModel)
     }
 }
 
 @Composable
 fun transactionDetailsItem(transactionInfoModel: TransactionHistoryModel) {
-    Column(
+    LazyColumn(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             //.scrollable() use it for enable bottom sheet scrolling
             //start optimize project folders names, files destinations, start planning of api model for my screen data class
             .padding(start = 20.dp, end = 20.dp, top = 20.dp)
     ) {
-        Box(
-            modifier = Modifier
-                .clip(CircleShape)
-                .background(Color.Black)
-                .height(96.dp)
-                .width(96.dp)
-        ) {
-
-            Image(
+        items(1) {
+            Box(
                 modifier = Modifier
-                    .fillMaxSize(),
-                contentScale = ContentScale.Crop,
-                painter = painterResource(id = transactionInfoModel.icon),
-                contentDescription = null
+                    .clip(CircleShape)
+                    .background(Color.Black)
+                    .height(96.dp)
+                    .width(96.dp)
+            ) {
+
+                Image(
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    contentScale = ContentScale.Crop,
+                    painter = painterResource(id = transactionInfoModel.icon),
+                    contentDescription = null
+                )
+            }
+
+            Text(
+                //service name
+                text = transactionInfoModel.service.retrieveServiceName(),
+                color = Color.White,
+                fontSize = 20.sp,
+                fontFamily = AppFont.Girloy,
+                fontWeight = FontWeight.SemiBold,
+                modifier = Modifier.padding(top = 10.dp)
             )
-        }
 
-        Text(
-            //service name
-            text = transactionInfoModel.service.retrieveServiceName(),
-            color = Color.White,
-            fontSize = 20.sp,
-            fontFamily = AppFont.Girloy,
-            fontWeight = FontWeight.SemiBold,
-            modifier = Modifier.padding(top = 10.dp)
-        )
-
-        Text(
-            //transaction date
-            text = transactionInfoModel.transactionDate,
-            color = Color.Gray,
-            fontSize = 15.sp,
-            letterSpacing = (0.4).sp,
-            fontFamily = AppFont.Girloy,
-            fontWeight = FontWeight.SemiBold,
-            modifier = Modifier.padding(top = 6.dp)
-        )
-
-        Text(
-            //transaction sum
-            text = transactionInfoModel.sum.toTransactionHistoryItemSum(),
-            color = transactionInfoModel.sum.isPositiveSum(),
-            fontSize = 26.sp,
-            lineHeight = 28.sp,
-            fontFamily = AppFont.Girloy,
-            fontWeight = FontWeight.SemiBold,
-            modifier = Modifier.padding(top = 11.dp)
-        )
-
-        transactionInfoModel.apply {
-            paymentInfo(
-                from = sumSubtitle,
-                category = type.toStr(),
-                cashback = if (sum < 0) abs(sum / 100).toCurrencyString().dropSignsFromSum()
-                else "-  "
+            Text(
+                //transaction date
+                text = transactionInfoModel.transactionDate,
+                color = Color.Gray,
+                fontSize = 15.sp,
+                letterSpacing = (0.4).sp,
+                fontFamily = AppFont.Girloy,
+                fontWeight = FontWeight.SemiBold,
+                modifier = Modifier.padding(top = 6.dp)
             )
-        }
 
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 16.dp)
-        ) {
-            paymentOption(text = "View receipt", image = R.drawable.ic_receipt)
-            Spacer(modifier = Modifier.width(16.dp))
-            paymentOption(text = "Split your payment", image = R.drawable.ic_split_payment)
-        }
+            Text(
+                //transaction sum
+                text = transactionInfoModel.sum.toTransactionHistoryItemSum(),
+                color = transactionInfoModel.sum.isPositiveSum(),
+                fontSize = 26.sp,
+                lineHeight = 28.sp,
+                fontFamily = AppFont.Girloy,
+                fontWeight = FontWeight.SemiBold,
+                modifier = Modifier.padding(top = 11.dp)
+            )
 
-        paymentAddressView()
-        paymentAddressView()
-        paymentAddressView()
-        paymentAddressView()
+            transactionInfoModel.apply {
+                paymentInfo(
+                    from = sumSubtitle,
+                    category = type.toStr(),
+                    cashback = if (sum < 0) abs(sum / 100).toCurrencyString().dropSignsFromSum()
+                    else "-  "
+                )
+            }
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 16.dp)
+            ) {
+                paymentOption(text = "View receipt", image = R.drawable.ic_receipt)
+                Spacer(modifier = Modifier.width(16.dp))
+                paymentOption(text = "Split your payment", image = R.drawable.ic_split_payment)
+            }
+
+            paymentAddressView()
+            paymentAddressView()
+            paymentAddressView()
+            paymentAddressView()
+        }
     }
 }
 
