@@ -19,7 +19,7 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = colorResource(id = R.color.colorBlack)
+                    color = colorResource(id = R.color.black)
                 ) {
                     TransactionHistoryFragment()
                 }

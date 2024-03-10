@@ -3,7 +3,7 @@
 
     <style name="Theme.BankApp" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:fontFamily">@font/girloy_light</item>
-        <item name="android:statusBarColor">@color/colorBlack</item>
+        <item name="android:statusBarColor">@color/black</item>
     </style>
 
 </resources>

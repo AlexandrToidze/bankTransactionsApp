@@ -51,7 +51,7 @@ fun paymentInfo(from: String, category: String, cashback: String) {
     Column(
         modifier = Modifier
             .clip(shape = RoundedCornerShape(16.dp))
-            .background(colorResource(id = R.color.colorMainGray))
+            .background(colorResource(id = R.color.main_gray))
             .fillMaxWidth()
             .padding(start = 16.dp, end = 16.dp)
     ) {
@@ -65,7 +65,7 @@ fun paymentInfo(from: String, category: String, cashback: String) {
                 .padding(horizontal = 8.dp)
                 .fillMaxWidth()
                 .height((1.5).dp)
-                .alpha(0.2f), color = colorResource(id = R.color.colorGray),
+                .alpha(0.2f), color = colorResource(id = R.color.gray),
         )
         paymentInfoRow(title = "Categories", subtitle = category)
         Divider(
@@ -73,7 +73,7 @@ fun paymentInfo(from: String, category: String, cashback: String) {
                 .padding(horizontal = 8.dp)
                 .fillMaxWidth()
                 .height((1.5).dp)
-                .alpha(0.2f), color = colorResource(id = R.color.colorGray),
+                .alpha(0.2f), color = colorResource(id = R.color.gray),
         )
         paymentInfoRow(title = "Cashback", subtitle = cashback)
 
@@ -94,7 +94,7 @@ fun paymentInfoRow(title: String, subtitle: String) {
         Text(
             //left string
             text = title,
-            color = colorResource(id = R.color.colorWhiteGray),
+            color = colorResource(id = R.color.white_gray),
             fontSize = 14.sp,
             fontFamily = AppFont.Girloy,
             fontWeight = FontWeight.Medium
@@ -103,7 +103,7 @@ fun paymentInfoRow(title: String, subtitle: String) {
         Text(
             //right string
             text = subtitle,
-            color = colorResource(id = R.color.colorWhiteGray),
+            color = colorResource(id = R.color.white_gray),
             fontSize = 14.sp,
             fontFamily = AppFont.Girloy,
             fontWeight = FontWeight.Medium
@@ -117,14 +117,14 @@ fun paymentOption(text: String, image: Int) {
         modifier = Modifier
             .width((LocalConfiguration.current.screenWidthDp.dp / 2) - 24.dp)
             .clip(shape = RoundedCornerShape(16.dp))
-            .background(colorResource(id = R.color.colorMainGray))
+            .background(colorResource(id = R.color.main_gray))
     ) {
         Image(
             modifier = Modifier
                 .clipToBounds()
                 .width(54.dp)
                 .padding(end = 8.dp, bottom = 16.dp, start = 16.dp, top = 16.dp),
-            colorFilter = ColorFilter.tint(colorResource(id = R.color.colorAccent)),
+            colorFilter = ColorFilter.tint(colorResource(id = R.color.accent)),
             contentScale = ContentScale.FillWidth,
             painter = painterResource(id = image),
             contentDescription = "option icon"
@@ -133,7 +133,7 @@ fun paymentOption(text: String, image: Int) {
         Text(
             //Payment info mocked string
             text = text,
-            color = colorResource(id = R.color.colorWhiteGray),
+            color = colorResource(id = R.color.white_gray),
             fontSize = 15.sp,
             fontFamily = AppFont.Girloy,
             fontWeight = FontWeight.Medium,

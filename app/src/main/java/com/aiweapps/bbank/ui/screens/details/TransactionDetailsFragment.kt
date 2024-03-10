@@ -160,7 +160,7 @@ fun paymentAddressView() {
     Column(
         modifier = Modifier
             .clip(shape = RoundedCornerShape(16.dp))
-            .background(colorResource(id = R.color.colorMainGray))
+            .background(colorResource(id = R.color.main_gray))
             .fillMaxWidth()
             .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
     ) {
@@ -168,7 +168,7 @@ fun paymentAddressView() {
             //left string
             modifier = Modifier.padding(vertical = 12.dp),
             text = "11b W 27th St, New York, NY 10001",
-            color = colorResource(id = R.color.colorWhiteGray),
+            color = colorResource(id = R.color.white_gray),
             fontSize = 14.sp,
             fontFamily = AppFont.Girloy,
             fontWeight = FontWeight.SemiBold
@@ -178,7 +178,7 @@ fun paymentAddressView() {
             modifier = Modifier
                 .padding(bottom = 8.dp)
                 .clip(shape = RoundedCornerShape(16.dp))
-                .background(colorResource(id = R.color.colorGray))
+                .background(colorResource(id = R.color.gray))
         ) {
             Image(
                 painter = painterResource(id = R.drawable.google_map),

@@ -28,7 +28,7 @@ fun transactionFilterBarItem(text: String, onClick: (() -> Unit), itemPadding: I
         modifier = Modifier
             .padding(start = itemPadding.dp)
             .clip(shape = RoundedCornerShape(8.dp))
-            .background(colorResource(id = R.color.colorMainGray))
+            .background(colorResource(id = R.color.main_gray))
             .clickable(onClick = onClick),
         verticalAlignment = Alignment.CenterVertically,
 
@@ -44,7 +44,7 @@ fun transactionFilterBarItem(text: String, onClick: (() -> Unit), itemPadding: I
 //                    .background(colorResource(id = R.color.colorAccent))
                     .padding(8.dp, 0.dp, 1.dp, 0.dp),
                 fontFamily = AppFont.Girloy,
-                color = colorResource(id = R.color.colorGray),
+                color = colorResource(id = R.color.gray),
                 fontWeight = FontWeight.Normal,
                 fontSize = 12.sp,
                 text = text
@@ -55,7 +55,7 @@ fun transactionFilterBarItem(text: String, onClick: (() -> Unit), itemPadding: I
                     .padding(end = 8.dp)
                     .height(14.dp)
                     .width(14.dp),
-                tint = colorResource(id = R.color.colorGray),
+                tint = colorResource(id = R.color.gray),
                 imageVector = Icons.Default.Close, contentDescription = null
             )
         }

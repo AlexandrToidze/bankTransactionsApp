@@ -45,7 +45,7 @@ fun TransactionFilterBar(
 //                .fillMaxWidth(0.2f)
                 .padding(end = 12.dp),
             fontFamily = AppFont.Girloy,
-            color = colorResource(id = R.color.colorGray),
+            color = colorResource(id = R.color.gray),
             fontWeight = FontWeight.Medium,
             text = "Categories: ",
             fontSize = 14.sp
@@ -78,7 +78,7 @@ fun TransactionFilterBar(
                     viewModel.clearAllFilters()
                 },
             maxLines = 1,
-            color = colorResource(id = R.color.colorGray),
+            color = colorResource(id = R.color.gray),
             fontFamily = AppFont.Girloy,
             fontWeight = FontWeight.Medium,
             textAlign = TextAlign.End,

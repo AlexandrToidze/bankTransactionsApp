@@ -70,7 +70,7 @@ fun TransactionHistoryItem(
 
         if (showBottomSheet) {
             ModalBottomSheet(
-                containerColor = colorResource(id = R.color.colorBlack),
+                containerColor = colorResource(id = R.color.black),
                 modifier = Modifier.fillMaxHeight(0.9f),
                 onDismissRequest = {
                     showBottomSheet = false
@@ -127,12 +127,12 @@ fun TransactionHistoryItem(
                             modifier = Modifier
                                 .padding(bottom = 0.dp, start = 8.dp)
                                 .clip(shape = RoundedCornerShape(6.dp))
-                                .background(colorResource(id = R.color.colorGray))
+                                .background(colorResource(id = R.color.gray))
                         ) {
                             Text(
                                 modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp),
                                 text = serviceModel.description,
-                                color = colorResource(id = R.color.colorWhite),
+                                color = colorResource(id = R.color.white),
                                 fontSize = 13.sp,
                                 letterSpacing = (0.1).sp,
                                 fontFamily = AppFont.Girloy,
@@ -185,15 +185,15 @@ fun TransactionHistoryItem(
                                 .clip(shape = RoundedCornerShape(4.dp))
                                 .background(
                                     colorResource(
-                                        id = if (isBigCashback) R.color.colorAccent
-                                        else R.color.colorMainGray
+                                        id = if (isBigCashback) R.color.accent
+                                        else R.color.main_gray
                                     )
                                 )
                         ) {
                             Text(
                                 modifier = Modifier.padding(horizontal = 4.dp, vertical = 0.dp),
                                 text = serviceModel.sum.toCashbackBoxForm(),
-                                color = colorResource(id = if (isBigCashback) R.color.colorBlack else R.color.colorWhite),
+                                color = colorResource(id = if (isBigCashback) R.color.black else R.color.white),
                                 fontSize = 12.sp,
                                 letterSpacing = (0.1).sp,
                                 fontFamily = AppFont.Girloy,

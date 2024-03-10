@@ -99,7 +99,7 @@ fun Toolbar(
                 colors = IconButtonDefaults.iconButtonColors(
                     contentColor =
                     if (selectedFilterTypes.all { !it.second }) Color.White
-                    else colorResource(id = R.color.colorAccent)
+                    else colorResource(id = R.color.accent)
                 ),
 //                painter = painterResource(id = R.drawable.ic_filter),
 //                contentDescription = "filter transactions"
@@ -110,7 +110,7 @@ fun Toolbar(
             DropdownMenu(
                 expanded = expandedFilterMenu,
                 onDismissRequest = { expandedFilterMenu = false },
-                modifier = Modifier.background(colorResource(id = R.color.colorMainGray))
+                modifier = Modifier.background(colorResource(id = R.color.main_gray))
             ) {
                 selectedFilterTypes.forEach { type ->
                     DropdownMenuItem(

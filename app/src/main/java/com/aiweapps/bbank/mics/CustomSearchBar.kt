@@ -61,22 +61,22 @@ fun CustomSearchBar(
             fontSize = 16.sp,
             fontFamily = AppFont.Girloy,
             fontWeight = FontWeight.Medium,
-            color = colorResource(id = R.color.colorGray)
+            color = colorResource(id = R.color.gray)
         ),
-        cursorBrush = SolidColor(colorResource(id = R.color.colorGray)),
+        cursorBrush = SolidColor(colorResource(id = R.color.gray)),
         modifier = modifier
             .fillMaxWidth()
             .height(36.dp)
             .clip(RoundedCornerShape(18.dp))
-            .background(color = colorResource(id = R.color.colorGray))
+            .background(color = colorResource(id = R.color.gray))
             .focusRequester(focusRequester)
     ) {
         TextFieldDefaults.DecorationBox(
             value = textFieldValueState.text,
             colors = TextFieldDefaults.colors(
-                focusedContainerColor = colorResource(id = R.color.colorMainGray),
-                unfocusedContainerColor = colorResource(id = R.color.colorMainGray),
-                cursorColor = colorResource(id = R.color.colorGray),
+                focusedContainerColor = colorResource(id = R.color.main_gray),
+                unfocusedContainerColor = colorResource(id = R.color.main_gray),
+                cursorColor = colorResource(id = R.color.gray),
                 focusedIndicatorColor = Color.Transparent,
                 errorIndicatorColor = Color.Transparent,
                 disabledIndicatorColor = Color.Transparent,
@@ -96,7 +96,7 @@ fun CustomSearchBar(
                     imageVector = ImageVector.vectorResource(R.drawable.ic_search),
                     modifier = Modifier.size(20.dp),
                     contentDescription = "search icon",
-                    tint = colorResource(id = R.color.colorGray)
+                    tint = colorResource(id = R.color.gray)
                 )
             },
             trailingIcon = {},
