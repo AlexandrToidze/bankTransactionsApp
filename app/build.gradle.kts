@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.raremode.bankapp"
+    namespace = "com.aiweapps.bbank"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.raremode.bankapp"
+        applicationId = "com.aiweapps.bbank"
         minSdk = 24
         targetSdk = 33
         versionCode = 1
