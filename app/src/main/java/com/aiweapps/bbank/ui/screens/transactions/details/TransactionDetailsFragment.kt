@@ -85,7 +85,7 @@ fun transactionDetailsItem(transactionInfoModel: TransactionHistoryModel) {
 
             Text(
                 //transaction date
-                text = transactionInfoModel.transactionDate,
+                text = transactionInfoModel.date,
                 color = Color.Gray,
                 fontSize = 15.sp,
                 letterSpacing = (0.4).sp,
@@ -107,7 +107,7 @@ fun transactionDetailsItem(transactionInfoModel: TransactionHistoryModel) {
 
             transactionInfoModel.apply {
                 transactionDetailsPaymentInfoView(
-                    from = sumSubtitle,
+                    from = direction,
                     category = type.toStr(LocalContext.current),
                     cashback = if (sum < 0) sum.toTransactionCashbackForm(
                         withCurrency = true, withSign = false

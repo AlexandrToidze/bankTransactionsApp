@@ -207,7 +207,7 @@ fun TransactionHistoryItem(
 
                     Text(
                         modifier = Modifier.padding(top = 3.dp, start = 4.dp),
-                        text = serviceModel.sumSubtitle,
+                        text = serviceModel.direction,
                         color = Color.Gray,
                         textAlign = TextAlign.End,
                         letterSpacing = (0.1).sp,

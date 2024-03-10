@@ -23,7 +23,8 @@ class TransactionsHistory() {
                 service = "http://ebay.com/",
                 sum = (2140.74),
                 type = JOB,
-                transactionDate = "February 13, 12:43 a.m."
+                direction = "BBank debit",
+                date = "February 13, 12:43 a.m."
             ),
 
             TransactionHistoryModel(
@@ -31,15 +32,16 @@ class TransactionsHistory() {
                 service = "http://facebook.com/",
                 sum = (-90.20),
                 type = ENTERTAINMENTS,
-                sumSubtitle = "BBank credit",
-                transactionDate = "February 13, 12:43 a.m."
+                direction = "BBank credit",
+                date = "February 13, 12:43 a.m."
             ),
 
             TransactionHistoryModel(
                 icon = R.drawable.google_logo,
                 service = "http://google.com/",
                 sum = (-121.22),
-                transactionDate = "February 13, 12:43 a.m."
+                direction = "BBank credit",
+                date = "February 13, 12:43 a.m."
             ),
 
             TransactionHistoryDateModel(
@@ -51,7 +53,8 @@ class TransactionsHistory() {
                 service = "http://nike.com/",
                 sum = (-238.10),
                 type = CLOTHING,
-                transactionDate = "February 12, 19:21 a.m."
+                direction = "BBank credit",
+                date = "February 12, 19:21 a.m."
 
             ),
 
@@ -59,7 +62,8 @@ class TransactionsHistory() {
                 icon = R.drawable.wallmart_logo,
                 service = "http://wallmart.com/",
                 sum = (-207.40),
-                transactionDate = "February 12, 19:21 a.m."
+                direction = "BBank credit",
+                date = "February 12, 19:21 a.m."
             ),
 
             TransactionHistoryModel(
@@ -68,7 +72,8 @@ class TransactionsHistory() {
                 description = "Sales revenue",
                 sum = (3169.46),
                 type = JOB,
-                transactionDate = "February 12, 19:21 a.m."
+                direction = "BBank debit",
+                date = "February 12, 19:21 a.m."
             ),
 
             TransactionHistoryModel(
@@ -76,7 +81,8 @@ class TransactionsHistory() {
                 service = "https://Burger king.com/",
                 sum = (-60.00),
                 type = FASTFOOD,
-                transactionDate = "February 12, 19:21 a.m."
+                direction = "BBank credit",
+                date = "February 12, 19:21 a.m."
             ),
 
             TransactionHistoryDateModel(
@@ -88,7 +94,8 @@ class TransactionsHistory() {
                 service = "http://apple.com/",
                 sum = (-2471.53),
                 type = TECHNIC,
-                transactionDate = "February 12, 18:22 a.m."
+                direction = "BBank credit",
+                date = "February 12, 18:22 a.m."
 
             ),
 
@@ -97,7 +104,8 @@ class TransactionsHistory() {
                 service = "http://figma.com/",
                 sum = (-9.12),
                 type = EDUCATION,
-                transactionDate = "February 13, 12:43 a.m."
+                direction = "BBank credit",
+                date = "February 13, 12:43 a.m."
             ),
 
             TransactionHistoryModel(
@@ -105,7 +113,8 @@ class TransactionsHistory() {
                 service = "http://Adidas.com/",
                 sum = (-169.31),
                 type = SHOPPING,
-                transactionDate = "February 12, 19:21 a.m."
+                direction = "BBank credit",
+                date = "February 12, 19:21 a.m."
             ),
 
 
@@ -118,14 +127,16 @@ class TransactionsHistory() {
                 service = "http://wallmart.com/",
                 type = SHOPPING,
                 sum = (-134.00),
-                transactionDate = "February 12, 19:21 a.m."
+                direction = "BBank credit",
+                date = "February 12, 19:21 a.m."
             ),
 
             TransactionHistoryModel(
                 icon = R.drawable.google_logo,
                 service = "http://google.com/",
                 sum = (-98.00),
-                transactionDate = "February 13, 12:43 a.m."
+                direction = "BBank credit",
+                date = "February 13, 12:43 a.m."
             ),
         )
     }

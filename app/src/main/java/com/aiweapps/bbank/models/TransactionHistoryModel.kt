@@ -10,9 +10,22 @@ data class TransactionHistoryModel(
     val description: String = "",
     val type: TransactionType = TransactionType.OTHER,
     val sum: Double,
-    val sumSubtitle: String = "BBank debit",
-    val transactionDate: String = "No info",
+    val direction: String,
+    val date: String
 )
+
+//maybe create endpoint .../transactions/transaction-history.json
+//
+// json example:
+//{
+//    "icon": "http://service-logo-path.com/ebay.png",
+//    "service": "http://ebay.com/",
+//    "description": "Sales revenue",
+//    "type": "TransactionType.OTHER",
+//    "sum": 3500.00,
+//    "direction": "TransactionDirection.DEBIT",
+//    "date": 83292393
+//}
 
 data class TransactionHistoryDateModel(
     val date: String
