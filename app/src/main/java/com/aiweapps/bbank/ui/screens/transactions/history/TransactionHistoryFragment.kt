@@ -1,6 +1,7 @@
-package com.aiweapps.bbank.ui.screens.history.items
+package com.aiweapps.bbank.ui.screens.transactions.history
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,19 +15,34 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.aiweapps.bbank.mics.CustomSearchBar
+import com.aiweapps.bbank.views.CustomSearchBar
 import com.aiweapps.bbank.models.TransactionHistoryDateModel
 import com.aiweapps.bbank.models.TransactionHistoryModel
 import com.aiweapps.bbank.models.TransactionType
-import com.aiweapps.bbank.ui.screens.toolbar.TransactionFilterBar
+import com.aiweapps.bbank.repository.TransactionsHistory
+import com.aiweapps.bbank.ui.screens.toolbar.Toolbar
+import com.aiweapps.bbank.ui.screens.toolbar.filter.TransactionFilterBar
+import com.aiweapps.bbank.ui.screens.transactions.history.items.TransactionHistoryDateItem
+import com.aiweapps.bbank.ui.screens.transactions.history.items.TransactionHistoryItem
 import com.aiweapps.bbank.ui.viewmodels.TransactionFilterViewModel
+
+@Preview(showBackground = true)
+@Composable
+fun TransactionHistoryFragment() {
+        Column {
+            Toolbar()
+            TransactionHistoryList()
+        }
+}
 
 @Composable
 fun TransactionHistoryList(
-    serviceList: List<Any>,
     viewModel: TransactionFilterViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
 ) {
+    val serviceList = TransactionsHistory().getTransactionsHistory()
+
     val filterTypes: List<Pair<TransactionType, Boolean>> =
         viewModel.state.collectAsState().value.selectedFilterTypes
     var queryString: String by remember { mutableStateOf("") } // Query for SearchBar

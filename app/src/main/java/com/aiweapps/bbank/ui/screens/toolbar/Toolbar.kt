@@ -1,6 +1,5 @@
 package com.aiweapps.bbank.ui.screens.toolbar
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -10,7 +9,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
@@ -28,13 +26,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.aiweapps.bbank.R
-import com.aiweapps.bbank.extensions.isFilterByThisType
 import com.aiweapps.bbank.models.TransactionType
-import com.aiweapps.bbank.models.toStr
+import com.aiweapps.bbank.ui.screens.toolbar.filter.items.transactionFilterDropdownItem
 import com.aiweapps.bbank.ui.viewmodels.TransactionFilterViewModel
 import com.aiweapps.bbank.utils.AppFont
 
@@ -66,7 +64,7 @@ fun Toolbar(
         )
 
         Text(
-            text = "Transactions",
+            text = stringResource(id = R.string.toolbar_transactions_fragment_title),
             color = Color.White,
             fontFamily = AppFont.Girloy,
             fontWeight = FontWeight.Medium,
@@ -97,8 +95,7 @@ fun Toolbar(
                     .padding(start = 8.dp),
 //                colorFilter = ColorFilter.tint(Color.White),
                 colors = IconButtonDefaults.iconButtonColors(
-                    contentColor =
-                    if (selectedFilterTypes.all { !it.second }) Color.White
+                    contentColor = if (selectedFilterTypes.all { !it.second }) Color.White
                     else colorResource(id = R.color.accent)
                 ),
 //                painter = painterResource(id = R.drawable.ic_filter),
@@ -113,34 +110,9 @@ fun Toolbar(
                 modifier = Modifier.background(colorResource(id = R.color.main_gray))
             ) {
                 selectedFilterTypes.forEach { type ->
-                    DropdownMenuItem(
-                        text = {
-                            Text(
-                                text = type.first.toStr(),
-                                fontFamily = AppFont.Girloy,
-                                fontWeight = FontWeight.Medium,
-                                color = Color.White
-                            )
-                        },
-                        onClick = {
-                            viewModel.updateFilterByThisType(type.first)
-                            Log.d(
-                                "SelectedFilterTypes",
-                                viewModel.state.value.selectedFilterTypes.toString()
-                            )
-                        },
-                        leadingIcon = {
-                            if (viewModel.state.value.selectedFilterTypes.isFilterByThisType(type.first)) {
-                                Image(
-                                    modifier = Modifier
-                                        .height(24.dp)
-                                        .width(24.dp),
-                                    colorFilter = ColorFilter.tint(Color.White),
-                                    painter = painterResource(id = R.drawable.ic_ok),
-                                    contentDescription = "quit from screen"
-                                )
-                            }
-                        })
+                    transactionFilterDropdownItem(type) {
+                        viewModel.updateFilterByThisType(it)
+                    }
                 }
             }
         }

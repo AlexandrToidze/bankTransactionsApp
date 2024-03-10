@@ -1,4 +1,4 @@
-package com.aiweapps.bbank.mics
+package com.aiweapps.bbank.views
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.MutableInteractionSource

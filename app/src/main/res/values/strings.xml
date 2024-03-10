@@ -1,3 +1,27 @@
 <resources>
     <string name="app_name">BankApp</string>
+    <string name="toolbar_transactions_fragment_title">Transactions</string>
+
+    <!--  transaction types  -->
+    <string name="transaction_type_job">Job</string>
+    <string name="transaction_type_entertainments">Entertainments</string>
+    <string name="transaction_type_technic">Technic</string>
+    <string name="transaction_type_clothing">Clothing</string>
+    <string name="transaction_type_shopping">Shopping</string>
+    <string name="transaction_type_education">Education</string>
+    <string name="transaction_type_fastfood">Fast food</string>
+    <string name="transaction_type_other">Other</string>
+
+    <!--  Transaction history screen  -->
+    <string name="transaction_filter_bar_categories_title">Categories:</string>
+    <string name="transaction_filter_bar_clear_all">Clear all</string>
+
+    <!--  transaction details screen  -->
+    <string name="payment_info">Payment info</string>
+    <string name="payment_from">Payment from</string>
+    <string name="payment_category">Categories</string>
+    <string name="payment_cashback">Cashback</string>
+    <string name="view_receipt">View receipt</string>
+    <string name="split_your_payment">Split your payment</string>
+    <string name="payment_address">Payment address</string>
 </resources>

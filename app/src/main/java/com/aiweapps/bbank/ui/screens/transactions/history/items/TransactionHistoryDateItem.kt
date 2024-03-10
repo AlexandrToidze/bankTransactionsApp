@@ -1,4 +1,4 @@
-package com.aiweapps.bbank.ui.screens.history.items
+package com.aiweapps.bbank.ui.screens.transactions.history.items
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text

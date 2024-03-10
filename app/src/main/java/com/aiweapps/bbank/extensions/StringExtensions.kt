@@ -12,15 +12,3 @@ fun String.retrieveServiceName(): String {
         .removeSuffix(".")
         .capitalize(localeList = LocaleList())
 }
-
-fun String.dropSignsFromSum(): String {
-    return this.replace("+", "")
-}
-
-fun Double.toCashbackBoxForm(): String {
-    val checkIfNearToTen = abs(this).toInt() % 10
-    val howMuchDigitsAfterComma = if (checkIfNearToTen == 0) "+%.1f" else "+%.2f"
-    return String
-        .format(howMuchDigitsAfterComma, abs(this) * 0.01)
-        .replace(".", ",")
-}

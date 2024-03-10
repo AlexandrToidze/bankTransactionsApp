@@ -1,4 +1,4 @@
-package com.aiweapps.bbank.ui.screens.toolbar
+package com.aiweapps.bbank.ui.screens.toolbar.filter
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
@@ -12,7 +12,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -21,7 +23,7 @@ import androidx.compose.ui.unit.sp
 import com.aiweapps.bbank.R
 import com.aiweapps.bbank.models.TransactionType
 import com.aiweapps.bbank.models.toStr
-import com.aiweapps.bbank.ui.screens.toolbar.items.transactionFilterBarItem
+import com.aiweapps.bbank.ui.screens.toolbar.filter.items.transactionFilterBarItem
 import com.aiweapps.bbank.ui.viewmodels.TransactionFilterViewModel
 import com.aiweapps.bbank.utils.AppFont
 
@@ -47,7 +49,7 @@ fun TransactionFilterBar(
             fontFamily = AppFont.Girloy,
             color = colorResource(id = R.color.gray),
             fontWeight = FontWeight.Medium,
-            text = "Categories: ",
+            text = stringResource(id = R.string.transaction_filter_bar_categories_title),
             fontSize = 14.sp
         )
 
@@ -58,7 +60,7 @@ fun TransactionFilterBar(
                 items(count = selectedFilterTypes.size - 1) { index ->
                     if (selectedFilterTypes[index].second) {
                         transactionFilterBarItem(
-                            text = selectedFilterTypes[index].first.toStr(),
+                            text = selectedFilterTypes[index].first.toStr(LocalContext.current),
                             itemPadding = if (index != 0) 4 else 0,
                             onClick = {
                                 viewModel.updateFilterByThisType(selectedFilterTypes[index].first)
@@ -82,7 +84,7 @@ fun TransactionFilterBar(
             fontFamily = AppFont.Girloy,
             fontWeight = FontWeight.Medium,
             textAlign = TextAlign.End,
-            text = "Clear all",
+            text = stringResource(id = R.string.transaction_filter_bar_clear_all),
             fontSize = 12.sp
         )
 

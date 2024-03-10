@@ -1,4 +1,4 @@
-package com.aiweapps.bbank.ui.screens.history.items
+package com.aiweapps.bbank.ui.screens.transactions.history.items
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -30,6 +30,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -39,19 +40,18 @@ import androidx.compose.ui.unit.sp
 import com.aiweapps.bbank.R
 import com.aiweapps.bbank.extensions.isPositiveSum
 import com.aiweapps.bbank.extensions.retrieveServiceName
-import com.aiweapps.bbank.extensions.toCashbackBoxForm
+import com.aiweapps.bbank.extensions.toTransactionCashbackForm
 import com.aiweapps.bbank.extensions.toTransactionHistoryItemSum
 import com.aiweapps.bbank.models.TransactionHistoryModel
 import com.aiweapps.bbank.models.toStr
-import com.aiweapps.bbank.ui.screens.details.TransactionDetailsScreen
+import com.aiweapps.bbank.ui.screens.transactions.details.TransactionDetailsScreen
 import com.aiweapps.bbank.utils.AppFont
 import kotlin.math.abs
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TransactionHistoryItem(
-    serviceModel: TransactionHistoryModel,
-    color: Color = Color.Gray,
+    serviceModel: TransactionHistoryModel
 ) {
 
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
@@ -166,7 +166,7 @@ fun TransactionHistoryItem(
                 , horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    text = serviceModel.type.toStr(),
+                    text = serviceModel.type.toStr(LocalContext.current),
                     fontSize = 12.sp,
                     color = Color.Gray,
                     letterSpacing = (0.1).sp,
@@ -192,7 +192,10 @@ fun TransactionHistoryItem(
                         ) {
                             Text(
                                 modifier = Modifier.padding(horizontal = 4.dp, vertical = 0.dp),
-                                text = serviceModel.sum.toCashbackBoxForm(),
+                                text = serviceModel.sum.toTransactionCashbackForm(
+                                    withCurrency = false,
+                                    withSign = true
+                                ),
                                 color = colorResource(id = if (isBigCashback) R.color.black else R.color.white),
                                 fontSize = 12.sp,
                                 letterSpacing = (0.1).sp,

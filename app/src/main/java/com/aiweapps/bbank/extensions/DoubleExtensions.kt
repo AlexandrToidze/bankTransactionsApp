@@ -4,35 +4,22 @@ import java.util.Currency
 import java.util.Locale
 import kotlin.math.abs
 
-fun Double.format(digits: Int) = String.Companion.format(
-    java.util.Locale.getDefault(),
-    "%..${digits}f",
-    this
-)
-
-fun Double.addNumbersAfterComma(): String {
-    val numberAsString = this.toString()
-    val nofDecimals = numberAsString.substringAfter('.', "").length
-    return String.format("%,.${nofDecimals}f", numberAsString.toDouble())
-}
-
-fun Double.toCurrencyString(): String {
-    return String.format(
-        if (this > 0) {
-            "+"
-        } else {
-            ""
-        } + "${Currency.getInstance(Locale.getDefault()).symbol}%.2f",
-        this
-    ).replace(".", ",")
-}
-
 fun Double.toTransactionHistoryItemSum(): String {
     return String.format(
         (if (this > 0) "+" else "-") + "${Currency.getInstance(Locale.getDefault()).symbol}%.2f",
         abs(this)
     ).replace(".", ",")
-//
-//    val formattedTransactionSum = if (this > 0) "+$sum"
-//    else "-$sum"
+}
+
+fun Double.toTransactionCashbackForm(withCurrency: Boolean, withSign: Boolean): String {
+    val checkIfNearToTen = abs(this).toInt() % 10
+    var howMuchDigitsAfterComma = if (checkIfNearToTen == 0) "%.1f" else "%.2f"
+
+    if (withSign) howMuchDigitsAfterComma = "+$howMuchDigitsAfterComma"
+
+    return String.format(
+        if (withCurrency) "${Currency.getInstance(Locale.getDefault()).symbol}" + howMuchDigitsAfterComma
+        else howMuchDigitsAfterComma,
+        abs(this) * 0.01
+    )
 }

@@ -1,4 +1,4 @@
-package com.aiweapps.bbank.ui.screens.details.items
+package com.aiweapps.bbank.views
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -24,6 +24,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -32,11 +33,11 @@ import com.aiweapps.bbank.R
 import com.aiweapps.bbank.utils.AppFont
 
 @Composable
-fun paymentInfo(from: String, category: String, cashback: String) {
+fun transactionDetailsPaymentInfoView(from: String, category: String, cashback: String) {
     Row {
         Text(
             //Payment info mocked string
-            text = "Payment info",
+            text = stringResource(id = R.string.payment_info),
             color = Color.White,
             fontSize = 16.sp,
             fontFamily = AppFont.Girloy,
@@ -59,7 +60,7 @@ fun paymentInfo(from: String, category: String, cashback: String) {
             .fillMaxWidth()
             .height(8.dp))
 
-        paymentInfoRow(title = "Payment from", subtitle = from)
+        transactionDetailsPaymentInfoRow(title = stringResource(id = R.string.payment_from), subtitle = from)
         Divider(
             Modifier
                 .padding(horizontal = 8.dp)
@@ -67,7 +68,7 @@ fun paymentInfo(from: String, category: String, cashback: String) {
                 .height((1.5).dp)
                 .alpha(0.2f), color = colorResource(id = R.color.gray),
         )
-        paymentInfoRow(title = "Categories", subtitle = category)
+        transactionDetailsPaymentInfoRow(title = stringResource(id = R.string.payment_category), subtitle = category)
         Divider(
             Modifier
                 .padding(horizontal = 8.dp)
@@ -75,16 +76,34 @@ fun paymentInfo(from: String, category: String, cashback: String) {
                 .height((1.5).dp)
                 .alpha(0.2f), color = colorResource(id = R.color.gray),
         )
-        paymentInfoRow(title = "Cashback", subtitle = cashback)
+        transactionDetailsPaymentInfoRow(title = stringResource(id = R.string.payment_cashback), subtitle = cashback)
 
         Spacer(modifier = Modifier
             .fillMaxWidth()
             .height(8.dp))
     }
+
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 16.dp)
+    ) {
+        transactionDetailsPaymentOption(
+            text = stringResource(id = R.string.view_receipt),
+            image = R.drawable.ic_receipt
+        )
+
+        Spacer(modifier = Modifier.width(16.dp))
+
+        transactionDetailsPaymentOption(
+            text = stringResource(id = R.string.split_your_payment),
+            image = R.drawable.ic_split_payment
+        )
+    }
 }
 
 @Composable
-fun paymentInfoRow(title: String, subtitle: String) {
+fun transactionDetailsPaymentInfoRow(title: String, subtitle: String) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier
@@ -112,7 +131,7 @@ fun paymentInfoRow(title: String, subtitle: String) {
 }
 
 @Composable
-fun paymentOption(text: String, image: Int) {
+fun transactionDetailsPaymentOption(text: String, image: Int) {
     Column(
         modifier = Modifier
             .width((LocalConfiguration.current.screenWidthDp.dp / 2) - 24.dp)

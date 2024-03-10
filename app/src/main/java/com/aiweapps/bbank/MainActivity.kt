@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
-import com.aiweapps.bbank.ui.screens.history.TransactionHistoryFragment
+import com.aiweapps.bbank.ui.screens.transactions.history.TransactionHistoryFragment
 import com.aiweapps.bbank.ui.theme.BankAppTheme
 
 class MainActivity : ComponentActivity() {

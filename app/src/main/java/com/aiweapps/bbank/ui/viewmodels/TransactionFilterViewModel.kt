@@ -1,7 +1,6 @@
 package com.aiweapps.bbank.ui.viewmodels
 
 import androidx.lifecycle.ViewModel
-import com.aiweapps.bbank.extensions.initFilterList
 import com.aiweapps.bbank.models.TransactionType
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -10,12 +9,12 @@ import kotlinx.coroutines.flow.asStateFlow
 class TransactionFilterViewModel : ViewModel() {
 
     data class SelectedFilterTypesState(
-        val selectedFilterTypes: List<Pair<TransactionType, Boolean>> = listOf<Pair<TransactionType, Boolean>>().initFilterList()
+        val selectedFilterTypes: List<Pair<TransactionType, Boolean>> = listOf()
     )
 
     private val _state = MutableStateFlow(
         SelectedFilterTypesState(
-            selectedFilterTypes = listOf<Pair<TransactionType, Boolean>>().initFilterList()
+            selectedFilterTypes = initFilterList()
         )
     )
 
@@ -48,7 +47,7 @@ class TransactionFilterViewModel : ViewModel() {
         )
     }
 
-    private fun List<Pair<TransactionType, Boolean>>.initFilterList(): List<Pair<TransactionType, Boolean>> {
+    private fun initFilterList(): List<Pair<TransactionType, Boolean>> {
         val result = mutableListOf<Pair<TransactionType, Boolean>>()
         TransactionType.values().forEach {
             result.add(Pair(it, false))
